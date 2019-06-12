@@ -1,0 +1,13 @@
+<div class="card text-center">
+  <img class="card-img-top" [src]="icon" alt="">
+  <div class="card-body">
+    <h4 class="card-title">{{title}}</h4>
+    <h5>{{price}} €</h5>
+    <p class="card-text">{{description}}Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
+    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+  </div>
+  <div class="card-footer bg-transparent">
+      <button type="button" class="btn btn-outline-success btn-lg btn-block" (click)="openModalWithComponent()">Détails</button>
+    <!-- <a href="#" class="btn btn-outline-success btn-lg btn-block">Réserver</a> -->
+  </div>
+</div>
