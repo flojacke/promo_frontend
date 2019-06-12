@@ -7,7 +7,8 @@
       <input class="form-control bg-light mx-auto" type="search" placeholder="Rechercher" aria-label="Rechercher">
       <div class="localisation my-5">
         <input type="search" class="mr-2" placeholder="Adresse">
-        0<input type="range" class="custom-range px-2" min="0" max="10" id="customRange2">20
+        <input type="range" class="custom-range px-2" #customRange (input)="customRange.value" min="0" max="20" id="customRange">
+        <label for="customRange">{{ customRange.value }} km</label>
       </div>
       <button class="btn btn-success btn-lg" type="submit">
           Vite une promo !
