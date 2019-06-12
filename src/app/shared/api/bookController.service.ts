@@ -27,7 +27,7 @@ import { Configuration }                                     from '../../../../c
 @Injectable()
 export class BookControllerService {
 
-    protected basePath = 'https://localhost:8081';
+    protected basePath = 'http://localhost:8081';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 

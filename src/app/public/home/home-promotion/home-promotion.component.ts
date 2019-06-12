@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Promotion } from 'src/app/shared/models/models';
+import { CatalogControllerService } from 'src/app/shared/api/api';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home-promotion',
@@ -6,53 +9,68 @@ import { Component, OnInit } from '@angular/core';
   styles: []
 })
 export class HomePromotionComponent implements OnInit {
-
+ promotions: Promotion[];
+ promoSubscription: Subscription;
   products;
 
-  constructor() { }
+  constructor(private catalogService: CatalogControllerService) { }
+
+
+  getAllPromotions() {
+    //initialise par la methode du service les promotions par les data qui sont récupéré
+    this.promoSubscription = this.catalogService.initCatalogProduitsUsingGET().subscribe(
+      (data) => {
+        this.promotions = data;
+      },
+      (err) => {
+  }
+  );
+  }
 
   ngOnInit() {
-    this.products = [
-     {
-      title: 'Manette PS4',
-      price: 30,
-      description: 'This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.',
-      icon: 'assets/img/manette.jpg'
-     },
-     {
-      title: 'Survêtement du Real Madrid',
-      price: 20,
-      description: 'This card has supporting text below as a natural lead-in to additional content.',
-      icon: 'assets/img/survetementRM.jpg'
-     },{
-      title: 'Manette PS4',
-      price: 30,
-      description: 'This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.',
-      icon: 'assets/img/manette.jpg'
-     },
-     {
-      title: 'Survêtement du Real Madrid',
-      price: 20,
-      description: 'This card has supporting text below as a natural lead-in to additional content.',
-      icon: 'assets/img/survetementRM.jpg'
-     },{
-      title: 'Manette PS4',
-      price: 30,
-      description: 'This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.',
-      icon: 'assets/img/manette.jpg'
-     },
-     {
-      title: 'Survêtement du Real Madrid',
-      price: 20,
-      description: 'This card has supporting text below as a natural lead-in to additional content.',
-      icon: 'assets/img/survetementRM.jpg'
-     },{
-      title: 'Manette PS4',
-      price: 30,
-      description: 'This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.',
-      icon: 'assets/img/manette.jpg'
-     }
-    ];
+
+    this.getAllPromotions();
+    // this.products = [
+    //  {
+    //   title: 'Manette PS4',
+    //   price: 30,
+    //   description: 'This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.',
+    //   icon: 'assets/img/manette.jpg'
+    //  },
+    //  {
+    //   title: 'Survêtement du Real Madrid',
+    //   price: 20,
+    //   description: 'This card has supporting text below as a natural lead-in to additional content.',
+    //   icon: 'assets/img/survetementRM.jpg'
+    //  },{
+    //   title: 'Manette PS4',
+    //   price: 30,
+    //   description: 'This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.',
+    //   icon: 'assets/img/manette.jpg'
+    //  },
+    //  {
+    //   title: 'Survêtement du Real Madrid',
+    //   price: 20,
+    //   description: 'This card has supporting text below as a natural lead-in to additional content.',
+    //   icon: 'assets/img/survetementRM.jpg'
+    //  },{
+    //   title: 'Manette PS4',
+    //   price: 30,
+    //   description: 'This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.',
+    //   icon: 'assets/img/manette.jpg'
+    //  },
+    //  {
+    //   title: 'Survêtement du Real Madrid',
+    //   price: 20,
+    //   description: 'This card has supporting text below as a natural lead-in to additional content.',
+    //   icon: 'assets/img/survetementRM.jpg'
+    //  },{
+    //   title: 'Manette PS4',
+    //   price: 30,
+    //   description: 'This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.',
+    //   icon: 'assets/img/manette.jpg'
+    //  }
+    // ];
   }
 
 }

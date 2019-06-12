@@ -6,11 +6,10 @@
 
   <div class="row">
     <app-product-card class="card-deck col-lg-4 col-md-6 mb-4"
-      *ngFor="let product of products"
-      [title]="product.title"
-      [price]="product.price"
-      [description]="product.description"
-      [icon]="product.icon">
+      *ngFor="let promotion of promotions"
+      [title]="promotion.name"
+      [price]="promotion.initPrice"
+      [description]="promotion.description">
     </app-product-card>
   </div>
 

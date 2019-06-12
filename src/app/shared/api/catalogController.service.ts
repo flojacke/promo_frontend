@@ -30,7 +30,7 @@ import { Configuration }                                     from '../../../../c
 @Injectable()
 export class CatalogControllerService {
 
-    protected basePath = 'https://localhost:8081';
+    protected basePath = 'http://localhost:8081';
     public defaultHeaders = new HttpHeaders();
     public configuration = new Configuration();
 
@@ -50,7 +50,7 @@ export class CatalogControllerService {
      */
     private canConsumeForm(consumes: string[]): boolean {
         const form = 'multipart/form-data';
-        for (let consume of consumes) {
+        for (const consume of consumes) {
             if (form === consume) {
                 return true;
             }
@@ -73,16 +73,16 @@ export class CatalogControllerService {
         let headers = this.defaultHeaders;
 
         // to determine the Accept header
-        let httpHeaderAccepts: string[] = [
+        const httpHeaderAccepts: string[] = [
             '*/*'
         ];
-        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-        if (httpHeaderAcceptSelected != undefined) {
-            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected !== undefined) {
+            headers = headers.set('Accept', httpHeaderAcceptSelected);
         }
 
         // to determine the Content-Type header
-        let consumes: string[] = [
+        const consumes: string[] = [
         ];
 
         return this.httpClient.get<Array<Promotion>>(`${this.basePath}/api/catalog/allPromotions`,
