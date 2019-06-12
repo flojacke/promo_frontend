@@ -1,3 +1,5 @@
+import { User } from './user';
+
 /**
  * Api Documentation
  * Api Documentation
@@ -11,7 +13,7 @@
  */
 
 
-export interface Shopkeeper {
+export interface Shopkeeper extends User {
     email?: string;
     firstName?: string;
     id?: number;

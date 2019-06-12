@@ -5,22 +5,23 @@
         <div class="card card-signin my-5">
           <div class="card-body">
             <h4 class="card-title text-center">Identifiez-vous</h4>
-            <form class="form-signin">
+            <form class="form-signin" [formGroup]="signInForm" (ngSubmit)="onSubmit()">
               <div class="form-label-group">
-                <input type="text" class="form-control mb-3" placeholder="Login" required autofocus>
+                <input type="text" class="form-control mb-3" formControlName="login" placeholder="Login" required autofocus >
               </div>
               <div class="form-label-group">
-                <input type="password" class="form-control mb-3" placeholder="Mot de passe" required>
+                <input type="password" class="form-control mb-3" formControlName="password" placeholder="Mot de passe" required>
               </div>
               <div class="custom-control custom-checkbox mb-3">
                 <input type="checkbox" class="custom-control-input" id="customCheck1">
                 <label class="custom-control-label" for="customCheck1">Se souvenir de moi ?</label>
               </div>
-              <button type="submit" class="btn btn-outline-success btn-block text-uppercase">Se connecter</button>
+              <button type="submit" class="btn btn-outline-success btn-block text-uppercase" [disabled]="signInForm.invalid">Se connecter</button>
               <hr class="my-5">
               <button class="btn btn-danger btn-block text-uppercase" type="submit">Se connecter avec Google</button>
               <button class="btn btn-primary btn-block text-uppercase" type="submit">Se connecter avec Facebook</button>
             </form>
+            <p class="text-danger"><strong> {{errorMessage}}</strong></p>
           </div>
         </div>
       </div>

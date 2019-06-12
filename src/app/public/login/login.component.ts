@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { User } from 'src/app/shared/models/user';
+import { ConnectionControllerService } from 'src/app/shared/api/api';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +10,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  signInForm: FormGroup;
+  errorMessage: string;
+  isAuthenticated: boolean;
+  userConnecte: User;
+  error: string;
+
+  constructor(private formBuilder: FormBuilder, private connexionService: ConnectionControllerService ) { }
 
   ngOnInit() {
+    this.initForm();
   }
 
+  initForm() {
+    this.signInForm = this.formBuilder.group({
+      login: ['', Validators.required],
+      password: ['', Validators.required]
+    });
+  }
+
+  onSubmit() {
+    const login = this.signInForm.get('login').value;
+    const password = this.signInForm.get('password').value;
+    this.connexionService.connectUsingPOST(login, password).subscribe(
+      (resp) => {  this.userConnecte = resp;
+                   sessionStorage.setItem('userConnecte', this.userConnecte.id.toString());
+                   sessionStorage.setItem('type', this.userConnecte.type);
+       },
+      (error) => {this.errorMessage = error.error.message; }
+    );
+}
 }

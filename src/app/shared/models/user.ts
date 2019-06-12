@@ -1,3 +1,5 @@
+import { AuthenticationData } from './authenticationData';
+
 /**
  * Api Documentation
  * Api Documentation
@@ -17,4 +19,6 @@ export interface User {
     id?: number;
     lastName?: string;
     phoneNumber?: string;
+    authenticationData?: AuthenticationData;
+    type?: string;
 }
