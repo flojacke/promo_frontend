@@ -10,9 +10,10 @@
  * Do not edit the class manually.
  */
 import { Address } from './address';
+import { User } from './user';
 
 
-export interface Client {
+export interface Client extends User {
     address?: Address;
     email?: string;
     firstName?: string;

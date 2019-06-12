@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { User } from 'src/app/shared/models/user';
 import { ConnectionControllerService } from 'src/app/shared/api/api';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
   userConnecte: User;
   error: string;
 
-  constructor(private formBuilder: FormBuilder, private connexionService: ConnectionControllerService ) { }
+  constructor(private formBuilder: FormBuilder, private connexionService: ConnectionControllerService,
+              private router: Router, private reroute: ActivatedRoute ) { }
 
   ngOnInit() {
     this.initForm();
@@ -37,7 +39,14 @@ export class LoginComponent implements OnInit {
                    sessionStorage.setItem('userConnecte', this.userConnecte.id.toString());
                    sessionStorage.setItem('type', this.userConnecte.type);
        },
-      (error) => {this.errorMessage = error.error.message; }
+      (error) => {this.errorMessage = error.error.message; },
+      () =>  { if ( sessionStorage.getItem('type') === 'CLIENT' ) {
+        this.router.navigate([ '/home' ]);
+      } else {
+        window.location.href = 'http://localhost:8081/invite/connexion/connexion.xhtml';
+      }
+      }
     );
+
 }
 }
