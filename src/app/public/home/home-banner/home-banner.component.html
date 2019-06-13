@@ -23,3 +23,19 @@
     
   </div>
 </div>
+<div class="container">
+
+    <hr>
+    <h2 class="text-center">Promotions en cours</h2>
+    <hr>
+  
+    <div class="row">
+      <app-product-card class="card-deck col-lg-4 col-md-6 mb-4"
+        *ngFor="let promotion of promotions"
+        [title]="promotion.name"
+        [price]="promotion.initPrice"
+        [description]="promotion.description">
+      </app-product-card>
+    </div>
+  
+  </div>

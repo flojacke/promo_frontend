@@ -5,7 +5,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { RequestSearchDTO, CategoryProduct, Promotion } from 'src/app/shared/models/models';
 import { Subscription } from 'rxjs';
 import { RequestSearchDTOimpl } from 'src/app/shared/models/RequestSearchDTOimpl';
-import {HomePromotionComponent } from '../home-promotion/home-promotion.component';
 
 @Component({
   selector: 'app-home-banner',
