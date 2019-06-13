@@ -33,6 +33,7 @@
       <app-product-card class="card-deck col-lg-4 col-md-6 mb-4"
         *ngFor="let promotion of promotions"
         [title]="promotion.name"
+        [produit]="promotion.product.referenceProduct.name"
         [price]="promotion.initPrice"
         [description]="promotion.description">
       </app-product-card>

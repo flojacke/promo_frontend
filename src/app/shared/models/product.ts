@@ -10,10 +10,12 @@
  * Do not edit the class manually.
  */
 import { Promotion } from './promotion';
+import { ReferenceProduct } from './referenceProduct';
 
 
 export interface Product {
     id?: number;
     lastProduct?: Product;
     promotion?: Promotion;
+    referenceProduct?: ReferenceProduct;
 }

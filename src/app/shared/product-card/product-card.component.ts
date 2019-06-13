@@ -17,6 +17,7 @@ export class ProductCardComponent implements OnInit {
   @Input() price: number;
   @Input() title: string;
   @Input() icon: string;
+  @Input() produit: string;
 
   bsModalRef: BsModalRef;
   constructor(private modalService: BsModalService) {}
