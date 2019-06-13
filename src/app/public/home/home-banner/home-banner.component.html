@@ -3,11 +3,17 @@
   <div class="panel bg-dark text-white pb-2">
     <h1 class="display-4 ">Les meilleurs deals du coin</h1>
     <h2>Un maximum de promos au même endroit !!!</h2>
-    <form class="justify-content-center px-5">
-      <input class="form-control bg-light mx-auto" type="search" placeholder="Rechercher" aria-label="Rechercher">
+    <form class="justify-content-center px-5" [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+    
+      <select class="hideLabel form-control" formControlName="categorie">
+       <option style="font-weight: bold">Categories:</option>
+       <option *ngFor="let categorie of categorys" >{{categorie.name}}</option>
+     </select>
+    
+      <input class="form-control bg-light mx-auto" formControlName="search" type="search" placeholder="Rechercher" aria-label="Rechercher">
       <div class="localisation my-5">
-        <input type="search" class="mr-2" placeholder="Adresse">
-        <input type="range" class="custom-range px-2" #customRange (input)="customRange.value" min="0" max="20" id="customRange">
+        <input type="search" formControlName="adresse" class="mr-2" placeholder="Adresse">
+        <input type="range" formControlName="perimeter" class="custom-range px-2" #customRange (input)="customRange.value" min="0" max="20" id="customRange">
         <label for="customRange">{{ customRange.value }} km</label>
       </div>
       <button class="btn btn-success btn-lg" type="submit">

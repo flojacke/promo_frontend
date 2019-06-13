@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Promotion } from 'src/app/shared/models/models';
 import { CatalogControllerService } from 'src/app/shared/api/api';
 import { Subscription } from 'rxjs';
+import { HomeBannerComponent } from '../home-banner/home-banner.component';
 
 @Component({
   selector: 'app-home-promotion',
@@ -13,8 +14,8 @@ export class HomePromotionComponent implements OnInit {
  promoSubscription: Subscription;
   products;
 
-  constructor(private catalogService: CatalogControllerService) { }
-
+  constructor(private catalogService: CatalogControllerService, //private homeBannerComponent: HomeBannerComponent
+    ) { }
 
   getAllPromotions() {
     //initialise par la methode du service les promotions par les data qui sont récupéré
@@ -26,10 +27,15 @@ export class HomePromotionComponent implements OnInit {
   }
   );
   }
+  updatePromotions() {
+
+     //this.promotions = this.homeBannerComponent.promotions;
+     // window.location.reload();
+  }
 
   ngOnInit() {
 
-    this.getAllPromotions();
+    //this.getAllPromotions();
     // this.products = [
     //  {
     //   title: 'Manette PS4',

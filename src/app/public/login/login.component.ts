@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
        },
       (error) => {this.errorMessage = error.error.message; },
       () =>  { if ( sessionStorage.getItem('type') === 'CLIENT' ) {
-        this.router.navigate([ '/home' ]);
+        window.location.href ='http://localhost:4200/home'
       } else {
         window.location.href = 'http://localhost:8081/invite/connexion/connexion.xhtml';
       }
