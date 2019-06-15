@@ -19,6 +19,8 @@ export class HomeBannerComponent implements OnInit {
   categories: CategoryProduct [] = [];
   promotions: Promotion[];
   promoSubscription: Subscription;
+  searchlat: number;
+  searchlong: number;
   products;
 
 
@@ -77,6 +79,15 @@ getAllPromotions() {
     this.catalogService.searchUsingPOST(this.requestSearchObject).subscribe(
       (resp) => {  this.promotions = resp.promotionList;
                    console.log(this.promotions);
+                   if (resp.longitude !== 0) {
+                    this.searchlong = resp.longitude;
+                    this.searchlat = resp.latitude;
+                    sessionStorage.setItem('searchlong', this.searchlong.toString() );
+                    sessionStorage.setItem('searchlat', this.searchlat.toString() );
+        } else {
+          sessionStorage.setItem('searchlong', '0' );
+          sessionStorage.setItem('searchlat', '0' );
+        }
        },
       (error) => { },
       () =>  { 

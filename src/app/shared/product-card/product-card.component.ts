@@ -18,14 +18,17 @@ export class ProductCardComponent implements OnInit {
   @Input() title: string;
   @Input() icon: string;
   @Input() produit: string;
+  @Input() idPromotion: number ;
 
   bsModalRef: BsModalRef;
   constructor(private modalService: BsModalService) {}
  
   openModalWithComponent() {
+    console.log(this.idPromotion);
+    sessionStorage.setItem('idPromotion', this.idPromotion.toString());
     const initialState = {
       list: [
-        'Open a modal with component',
+       this.idPromotion,
         'Pass your data',
         'Do something else',
         '...'

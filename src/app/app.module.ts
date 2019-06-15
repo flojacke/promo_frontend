@@ -7,6 +7,7 @@ import { CoreModule } from './core/core.module';
 import { BookControllerService, CatalogControllerService, ClientControllerService, ConnectionControllerService } from './shared/api/api';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PromotionControllerService } from './shared/api/promotionController.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   providers: [ HttpClient,
     HttpClientModule,
-    AppRoutingModule, BookControllerService, CatalogControllerService, ClientControllerService, ConnectionControllerService],
+    AppRoutingModule, BookControllerService, 
+    CatalogControllerService, ClientControllerService,
+    PromotionControllerService, ConnectionControllerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

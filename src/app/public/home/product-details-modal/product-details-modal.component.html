@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h4 class="modal-title pull-left">{{title}}</h4>
+    <h4 class="modal-title pull-left">{{title}}merde</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -8,6 +8,10 @@
     <ul *ngIf="list.length">
       <li *ngFor="let item of list">{{item}}</li>
     </ul>
+    <div *ngIf="isDataLoaded()">
+    <div>hello{{promotion.product.referenceProduct.name}}</div>
+  </div>
+    <div id="map" style="height: 400px; width: 100%;" ></div>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">{{closeBtnName}}</button>
