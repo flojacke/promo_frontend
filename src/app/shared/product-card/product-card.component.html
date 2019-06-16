@@ -14,7 +14,7 @@
         <option *ngFor="let in of counter(quantityAvailable) ;let i = index">{{i+1}}</option>
       </select>
       <div class="input-group-append">
-        <button type="button" class="btn btn-outline-info btn-sm">
+        <button type="button" class="btn btn-outline-info btn-sm" [disabled]="!ClientConnected">
           <i class="material-icons">add_shopping_cart</i>
         </button>
       </div>

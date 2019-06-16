@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 
 export class NavbarComponent implements OnInit {
 
-ClientConnected = false;
+  ClientConnected = false;
 
 
   constructor() { }
@@ -19,7 +19,7 @@ ClientConnected = false;
 
   IsConnected() {
     if (sessionStorage.getItem('type') === 'CLIENT') {
-this.ClientConnected = true;
+      this.ClientConnected = true;
     } else {
       this.ClientConnected = false;
     }
