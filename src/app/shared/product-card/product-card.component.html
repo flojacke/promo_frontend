@@ -1,10 +1,24 @@
 <div class="card text-center">
   <img class="card-img-top" [src]="icon" alt="">
   <div class="card-body">
-    <h4 class="card-title">{{title}}</h4>
-    <h4 class="card-title">{{produit}}</h4>
-    <h5>{{price}} €</h5>
-    <p class="card-text">{{description}}</p>
+    <h5 class="text-info">{{title}}</h5>
+    <h5 class="card-title">{{referenceProduct}}</h5>
+    <del>{{price}} €</del>
+    <h5 class="text-danger">{{newPrice}} €</h5>
+    <p class="card-text">Date d'expiration : {{limitDatePromotion | date:'dd/MM/yyyy'}}</p>
+    <p class="card-text">Délai de retrait : {{limitTimeWithdrawPromotion}}</p>
+    
+    <div class="input-group">
+      <select class="custom-select">
+          <option selected>Unité</option>
+        <option *ngFor="let in of counter(quantityAvailable) ;let i = index">{{i+1}}</option>
+      </select>
+      <div class="input-group-append">
+        <button type="button" class="btn btn-outline-info btn-sm">
+          <i class="material-icons">add_shopping_cart</i>
+        </button>
+      </div>
+    </div>
     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
   </div>
   <div class="card-footer bg-transparent">

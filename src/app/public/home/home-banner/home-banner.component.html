@@ -14,7 +14,7 @@
       <div class="localisation my-3">
         <input type="search" formControlName="adresse" class="form-control mx-auto" placeholder="Adresse">
         <input type="range" formControlName="perimeter" class="form-control custom-range px-2 mx-auto mt-3" #customRange (input)="customRange.value" min="0" max="20" id="customRange">
-        <label for="customRange">{{ customRange.value }} km</label>
+        <label class="mt-2" for="customRange">{{ customRange.value }} km</label>
       </div>
       <button class="btn btn-success btn-lg mb-3" type="submit">
           Vite une promo !
@@ -34,10 +34,14 @@
         *ngFor="let promotion of promotions"
         [icon]="path + promotion.product.image"
         [title]="promotion.name"
-        [produit]="promotion.product.referenceProduct.name"
+        [referenceProduct]="promotion.product.referenceProduct.name"
         [price]="promotion.initPrice"
         [description]="promotion.description"
-        [idPromotion]="promotion.id">
+        [idPromotion]="promotion.id"
+        [newPrice]="promotion.priceAfterPromotion"
+        [limitDatePromotion]="promotion.endDate"
+        [limitTimeWithdrawPromotion]="promotion.limitTimeTakePromotion"
+        [quantityAvailable]="promotion.quantityRemaining">
       </app-product-card>
     </div>
   

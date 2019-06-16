@@ -9,15 +9,24 @@ import { ProductDetailsModalComponent } from 'src/app/public/home/product-detail
 })
 export class ProductCardComponent implements OnInit {
 
+  @Input() icon: string;
+  @Input() title: string;
+  @Input() referenceProduct: string;
   @Input() description: string;
   @Input() price: number;
-  @Input() title: string;
-  @Input() icon: string;
-  @Input() produit: string;
+  @Input() newPrice: number;
+  @Input() limitDatePromotion: Date;
+  @Input() limitTimeWithdrawPromotion: number;
+  @Input() quantityAvailable: number;
+
   @Input() idPromotion: number;
 
   bsModalRef: BsModalRef;
   constructor(private modalService: BsModalService) {}
+
+  counter(i: number) {
+    return new Array(i);
+  }
  
   openModalWithComponent() {
     console.log(this.idPromotion);
