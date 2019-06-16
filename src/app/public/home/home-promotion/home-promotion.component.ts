@@ -10,9 +10,9 @@ import { HomeBannerComponent } from '../home-banner/home-banner.component';
   styles: []
 })
 export class HomePromotionComponent implements OnInit {
- promotions: Promotion[];
- promoSubscription: Subscription;
-  products;
+  promotions: Promotion[];
+  promoSubscription: Subscription;
+  // products;
 
   constructor(private catalogService: CatalogControllerService, //private homeBannerComponent: HomeBannerComponent
     ) { }

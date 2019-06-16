@@ -1,12 +1,8 @@
-<nav class="navbar navbar-expand-sm bg-light navbar-light">
-  <div class="container">
-    <a class="navbar-brand">Promo 33</a>
-      <!-- Left side of navbar -->
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link " href="#">Accueil</a>
-        </li>
-      </ul>
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  <!-- <div class="container"> -->
+    <a class="navbar-brand" href="#">
+      <img src="assets/img/logo/promo33.png" width="150" height="60" class="d-inline-block align-top" alt="">
+    </a>
       <!-- Right side of navbar -->
       <ul class="navbar-nav ml-auto">
         <li *ngIf= "!ClientConnected" class="nav-item">
@@ -15,12 +11,12 @@
         <li *ngIf= "!ClientConnected" class="nav-item">
           <a class="nav-link" href="#">Inscription</a>
         </li>
-        <!-- <li *ngIf= "ClientConnected" class="nav-item">
-          <a class="nav-link" href="#">Mes Promotions</a>
-        </li> -->
         <li *ngIf= "ClientConnected"  class="nav-item">
-          <a class="nav-link" href="#">Mes Réservations</a>
+          <a class="nav-link" href="mybookings">Mes Réservations</a>
+        </li>
+        <li *ngIf= "ClientConnected" class="nav-item">
+          <a class="nav-link" href="#">Se Déconnecter</a>
         </li>
       </ul>
-  </div>
+  <!-- </div> -->
 </nav>

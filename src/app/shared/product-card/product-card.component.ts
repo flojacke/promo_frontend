@@ -5,11 +5,7 @@ import { ProductDetailsModalComponent } from 'src/app/public/home/product-detail
 @Component({
   selector: 'app-product-card',
   templateUrl: './product-card.component.html',
-  styles: [`.card img {
-    margin: auto;
-    padding-top: 1em;
-    max-width: 60%;
-}`]
+  styleUrls: ['./product-card.component.scss']
 })
 export class ProductCardComponent implements OnInit {
 
@@ -18,7 +14,7 @@ export class ProductCardComponent implements OnInit {
   @Input() title: string;
   @Input() icon: string;
   @Input() produit: string;
-  @Input() idPromotion: number ;
+  @Input() idPromotion: number;
 
   bsModalRef: BsModalRef;
   constructor(private modalService: BsModalService) {}

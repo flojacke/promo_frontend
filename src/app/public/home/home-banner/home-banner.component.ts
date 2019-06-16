@@ -21,7 +21,8 @@ export class HomeBannerComponent implements OnInit {
   promoSubscription: Subscription;
   searchlat: number;
   searchlong: number;
-  products;
+  path = "assets/img/products/";
+  // products;
 
 
   constructor(private formBuilder: FormBuilder, private catalogService: CatalogControllerService,

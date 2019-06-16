@@ -5,18 +5,18 @@
     <h2>Un maximum de promos au même endroit !!!</h2>
     <form class="justify-content-center px-5" [formGroup]="searchForm" (ngSubmit)="onSubmit()">
     
-      <select class="hideLabel form-control" formControlName="categorie">
+      <select class="hideLabel form-control mx-auto mt-3" formControlName="categorie">
        <option style="font-weight: bold">Categories:</option>
        <option *ngFor="let categorie of categorys" >{{categorie.name}}</option>
      </select>
     
-      <input class="form-control bg-light mx-auto" formControlName="search" type="search" placeholder="Rechercher" aria-label="Rechercher">
-      <div class="localisation my-5">
-        <input type="search" formControlName="adresse" class="mr-2" placeholder="Adresse">
-        <input type="range" formControlName="perimeter" class="custom-range px-2" #customRange (input)="customRange.value" min="0" max="20" id="customRange">
+      <input class="form-control bg-light mx-auto mt-3" formControlName="search" type="search" placeholder="Rechercher" aria-label="Rechercher">
+      <div class="localisation my-3">
+        <input type="search" formControlName="adresse" class="form-control mx-auto" placeholder="Adresse">
+        <input type="range" formControlName="perimeter" class="form-control custom-range px-2 mx-auto mt-3" #customRange (input)="customRange.value" min="0" max="20" id="customRange">
         <label for="customRange">{{ customRange.value }} km</label>
       </div>
-      <button class="btn btn-success btn-lg" type="submit">
+      <button class="btn btn-success btn-lg mb-3" type="submit">
           Vite une promo !
       </button>
     </form>
@@ -32,6 +32,7 @@
     <div class="row">
       <app-product-card class="card-deck col-lg-4 col-md-6 mb-4"
         *ngFor="let promotion of promotions"
+        [icon]="path + promotion.product.image"
         [title]="promotion.name"
         [produit]="promotion.product.referenceProduct.name"
         [price]="promotion.initPrice"
