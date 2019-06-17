@@ -1,10 +1,10 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { CatalogControllerService } from 'src/app/shared/api/api';
 import { Router, ActivatedRoute } from '@angular/router';
 import { RequestSearchDTO, CategoryProduct, Promotion } from 'src/app/shared/models/models';
 import { Subscription } from 'rxjs';
 import { RequestSearchDTOimpl } from 'src/app/shared/models/RequestSearchDTOimpl';
+import { CatalogControllerService } from 'src/app/shared/api/api.';
 
 @Component({
   selector: 'app-home-banner',

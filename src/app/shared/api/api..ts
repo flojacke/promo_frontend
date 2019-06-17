@@ -1,0 +1,17 @@
+export * from './addPromotionController.service';
+import { AddPromotionControllerService } from './addPromotionController.service';
+export * from './bookController.service';
+import { BookControllerService } from './bookController.service';
+export * from './catalogController.service';
+import { CatalogControllerService } from './catalogController.service';
+export * from './clientController.service';
+import { ClientControllerService } from './clientController.service';
+export * from './connectionController.service';
+import { ConnectionControllerService } from './connectionController.service';
+export * from './promotionController.service';
+import { PromotionControllerService } from './promotionController.service';
+export * from './reservationController.service';
+import { ReservationControllerService } from './reservationController.service';
+export * from './reservationManagementController.service';
+import { ReservationManagementControllerService } from './reservationManagementController.service';
+export const APIS = [AddPromotionControllerService, BookControllerService, CatalogControllerService, ClientControllerService, ConnectionControllerService, PromotionControllerService, ReservationControllerService, ReservationManagementControllerService];

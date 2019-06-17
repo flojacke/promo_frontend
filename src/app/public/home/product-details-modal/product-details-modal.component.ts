@@ -3,6 +3,8 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Promotion } from 'src/app/shared/models/models';
 import { PromotionDTO } from 'src/app/shared/models/promotionDTO';
 import { PromotionControllerService } from 'src/app/shared/api/promotionController.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { BookControllerService } from 'src/app/shared/api/api.';
 
 @Component({
   selector: 'app-product-details-modal',
@@ -10,6 +12,7 @@ import { PromotionControllerService } from 'src/app/shared/api/promotionControll
 })
 export class ProductDetailsModalComponent implements OnInit {
 
+  bookForm: FormGroup;
   title = 'hello';
   closeBtnName: string;
   list: any[] = [];
@@ -20,19 +23,37 @@ export class ProductDetailsModalComponent implements OnInit {
   shoplat: number;
   shoplong: number;
   d: string;
+  ClientConnected: boolean;
 
-  constructor(public bsModalRef: BsModalRef, private promotionService: PromotionControllerService) {}
+  constructor(public bsModalRef: BsModalRef, private promotionService: PromotionControllerService,
+              private bookService: BookControllerService, private formBuilder: FormBuilder) {}
 
 
   ngOnInit() {
-
-
-        this.shoplat = +(sessionStorage.getItem('latitudeCommerce'));
-        this.shoplong = +(sessionStorage.getItem('longitudeCommerce'));
-        this.initMap( this.shoplong, this.shoplat);
-        this.distance(this.xA, this.yA, this.shoplong, this.shoplat);
+    this.bookForm = this.formBuilder.group({
+      quantitySelected: []
+    });
+    this.shoplat = +(sessionStorage.getItem('latitudeCommerce'));
+    this.shoplong = +(sessionStorage.getItem('longitudeCommerce'));
+    this.initMap( this.shoplong, this.shoplat);
+    this.distance(this.xA, this.yA, this.shoplong, this.shoplat);
+    this.IsConnected();
 
       }
+
+
+      onSubmit() {
+        console.log('dedans');
+        const quantitSelected = this.bookForm.get('quantitySelected').value;
+        console.log(quantitSelected);
+        this.bookService
+        .bookUsingPOST((+(sessionStorage.getItem('idPromotion'))), (+(quantitSelected)), (+(sessionStorage.getItem('userConnecte'))) )
+        .subscribe(
+          () => { }
+           ,
+          (error) => { }
+        );
+    }
 
   isDataLoaded() {
     if (this.promotion.id === +(this.idPromotion)) {
@@ -102,6 +123,14 @@ export class ProductDetailsModalComponent implements OnInit {
         } else {
             d = Math.round(d * 1000);
             this.d = d + 'm';
+        }
+      }
+
+      IsConnected() {
+        if (sessionStorage.getItem('type') === 'CLIENT') {
+          this.ClientConnected = true;
+        } else {
+          this.ClientConnected = false;
         }
       }
 

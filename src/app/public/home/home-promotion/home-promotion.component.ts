@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Promotion } from 'src/app/shared/models/models';
-import { CatalogControllerService } from 'src/app/shared/api/api';
 import { Subscription } from 'rxjs';
 import { HomeBannerComponent } from '../home-banner/home-banner.component';
+import { CatalogControllerService } from 'src/app/shared/api/api.';
 
 @Component({
   selector: 'app-home-promotion',

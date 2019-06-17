@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { User } from 'src/app/shared/models/user';
-import { ConnectionControllerService } from 'src/app/shared/api/api';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ConnectionControllerService } from 'src/app/shared/api/api.';
 
 @Component({
   selector: 'app-login',
