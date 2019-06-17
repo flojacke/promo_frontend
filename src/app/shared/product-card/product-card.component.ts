@@ -31,7 +31,7 @@ export class ProductCardComponent implements OnInit {
   counter(i: number) {
     return new Array(i);
   }
- 
+  
   openModalWithComponent() {
     console.log(this.idPromotion);
     console.log(this.promotion);
@@ -51,7 +51,22 @@ export class ProductCardComponent implements OnInit {
        this.promotion.shopList[0].name,
        this.promotion.shopList[0].address.city.name
       ],
-      title: this.promotion.name
+      title: this.promotion.name,
+      description : this.promotion.description,
+      image: this.promotion.product.image,
+      path: "assets/img/products/",
+      referenceProduct: this.promotion.product.referenceProduct.name,
+      price: this.promotion.initPrice,
+      newPrice: this.promotion.priceAfterPromotion,
+      limitDatePromotion: this.promotion.endDate,
+      limitTimeWithdrawPromotion: this.promotion.limitTimeTakePromotion,
+      quantityAvailable: this.promotion.quantityRemaining,
+      shopName: this.promotion.shopList[0].name,
+      shopAdresse: this.promotion.shopList[0].address.city.name,
+
+      counter(i: number) {
+        return new Array(i);
+      }
     };
     this.bsModalRef = this.modalService.show(ProductDetailsModalComponent, {initialState});
     this.bsModalRef.content.closeBtnName = 'Close';

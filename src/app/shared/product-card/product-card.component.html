@@ -7,11 +7,11 @@
     <h5 class="text-danger">{{newPrice}} €</h5>
     <p class="card-text">Date d'expiration : {{limitDatePromotion | date:'dd/MM/yyyy'}}</p>
     <p class="card-text">Délai de retrait : {{limitTimeWithdrawPromotion}}</p>
-    
+    <p class="card-text">Quantité(s) restante : {{quantityAvailable}} Unité(s)</p>
     <div class="input-group">
       <select class="custom-select">
-          <option selected>Unité</option>
-        <option *ngFor="let in of counter(quantityAvailable) ;let i = index">{{i+1}}</option>
+        <option selected>Quantité(s)</option>
+       <option *ngFor="let in of counter(quantityAvailable) ;let i = index">{{i+1}}</option>
       </select>
       <div class="input-group-append">
         <button type="button" class="btn btn-outline-info btn-sm" [disabled]="!ClientConnected">
