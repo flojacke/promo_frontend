@@ -8,10 +8,12 @@ import { BookControllerService, CatalogControllerService, ClientControllerServic
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PromotionControllerService } from './shared/api/promotionController.service';
+import { AlertModalComponent } from './alert-modal/alert-modal.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AlertModalComponent
   ],
   imports: [
     BrowserModule,

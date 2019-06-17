@@ -1,35 +1,57 @@
-<div class="modal-header">
-    <h4 class="modal-title pull-left">{{title}}</h4>
+<div>
+  <div class="modal-header text-center">
+    <h4 class="modal-title pull-left text-info">{{title}}</h4>
     <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
 </div>
 <div class="modal-body">
-    <!-- <ul *ngIf="list.length">
-      <li *ngFor="let item of list">{{item}}</li>
-    </ul> -->
-    <img class="card-img-top" [src]="path + image" alt="">
-    <h5 class="card-title">{{referenceProduct}}</h5>
-    <del>{{price}} €</del>
-    <h5 class="text-danger">{{newPrice}} €</h5>
-    <p class="card-text">Date d'expiration : {{limitDatePromotion | date:'dd/MM/yyyy'}}</p>
-    <p class="card-text">Délai de retrait : {{limitTimeWithdrawPromotion}}</p>
-    
-    <div class="input-group">
-      <select class="custom-select">
-          <option selected>Quantité(s)</option>
-          <option *ngFor="let in of counter(quantityAvailable) ;let i = index">{{i+1}}</option>
-      </select>
-      <div class="input-group-append">
-        <button type="button" class="btn btn-outline-info btn-sm" [disabled]="!ClientConnected">
-          <i class="material-icons">add_shopping_cart</i>
-        </button>
-      </div>
+  <div class="container">
+    <div class="row">
+        <div class="col">
+            <img [src]="path + image" alt="">
+            <h5 class="card-title">{{referenceProduct}}</h5>
+            <del>{{price}} €</del>
+            <h5 class="text-danger">{{newPrice}} €</h5>
+            <p class="card-text">Date d'expiration : {{limitDatePromotion | date:'dd/MM/yyyy'}}</p>
+            <p class="card-text">Délai de retrait : {{limitTimeWithdrawPromotion}}</p>          
+        </div>
+        <div class="col">
+            <div id="map" style="height: 400px; width: 100%;" ></div>
+            <p class="card-text">Adresse</p> 
+            <p class="card-text">{{shopName}}</p> 
+            <p class="card-text">{{shopAdresseStreetNumber}} {{shopAdresseStreetComplement}} {{shopAdresseStreetTypeName}} {{shopAdresseStreetName}} {{shopAdressePostalCode}} {{shopAdresseCity}}</p>  
+            <div class="input-group">
+                <select class="custom-select">
+                    <option selected>Quantité(s)</option>
+                    <option *ngFor="let in of counter(quantityAvailable) ;let i = index">{{i+1}}</option>
+                </select>
+                <div class="input-group-append">
+                  <button type="button" class="btn btn-outline-info btn-sm" [disabled]="!ClientConnected">
+                    <i class="material-icons">add_shopping_cart</i>
+                  </button>
+                </div>
+              </div>
+        </div>
     </div>
-  <div *ngIf="isDataLoaded()">
+
+
+
   </div>
-  <div id="map" style="height: 400px; width: 100%;" ></div>
+
+
+     <!-- <ul *ngIf="list.length">
+      <li *ngFor="let item of list">{{item}}</li>
+    </ul>  -->
+
+    
+    <!-- <div *ngIf="isDataLoaded()">
+        <div>hello{{promotion.product.referenceProduct.name}}</div>
+        <div>{{d}}</div>
+      </div> -->
+  
 </div>
-<div class="modal-footer">
+<!-- <div class="modal-footer">
     <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">{{closeBtnName}}</button>
+</div> -->
 </div>

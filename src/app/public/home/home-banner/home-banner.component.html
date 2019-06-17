@@ -35,11 +35,11 @@
         [icon]="path + promotion.product.image"
         [title]="promotion.name"
         [referenceProduct]="promotion.product.referenceProduct.name"
-        [price]="promotion.initPrice"
+        [price]="promotion.initPrice.toFixed(2)"
         [description]="promotion.description"
         [idPromotion]="promotion.id"
         [promotion]="promotion"
-        [newPrice]="promotion.priceAfterPromotion"
+        [newPrice]="promotion.priceAfterPromotion.toFixed(2)"
         [limitDatePromotion]="promotion.endDate"
         [limitTimeWithdrawPromotion]="promotion.limitTimeTakePromotion"
         [quantityAvailable]="promotion.quantityRemaining">
