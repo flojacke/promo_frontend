@@ -15,6 +15,7 @@ import { ReferenceProduct } from './referenceProduct';
 
 export interface Product {
     id?: number;
+    image: string;
     lastProduct?: Product;
     promotion?: Promotion;
     referenceProduct?: ReferenceProduct;
