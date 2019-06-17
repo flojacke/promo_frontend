@@ -1,0 +1,47 @@
+<div class="jumbotron text-center">
+<h2 class="text-info">Créer votre promotion</h2>
+<form class="justify-content-center px-5" (ngSubmit)="onSubmit()"> <!-- [formGroup]="createPromotionForm" -->
+    
+    <select class="hideLabel form-control mx-auto mt-3" formControlName="categorie">
+     <option style="font-weight: bold">Choisissez un Commerce : </option>
+     <!-- <option *ngFor="let categorie of categorys" ></option> -->
+   </select>
+
+    <div class="localisation my-3">
+      <input type="search" formControlName="promotionname" class="form-control mx-auto" placeholder="Nom de la promotion">
+    </div>
+    <div class="localisation my-3">
+      <input type="search" formControlName="promotiondescription" class="form-control mx-auto" placeholder="Description de la promotion">
+    </div>
+    <select class="hideLabel form-control mx-auto mt-3" formControlName="shoplist">
+        <option style="font-weight: bold">Choisissez un Commerce : </option>
+        <!-- <option *ngFor="let categorie of categorys" ></option> -->
+      </select>
+      <select class="hideLabel form-control mx-auto mt-3" formControlName="promotiontype">
+          <option style="font-weight: bold">Type de promotion : </option>
+          <!-- <option *ngFor="let categorie of categorys" ></option> -->
+        </select>
+      <div class="localisation my-3">  
+      <input type="search" formControlName="promotiondescription" class="form-control mx-auto" placeholder="Valeur du pourcentage de remise">
+    </div>
+      <div class="localisation my-3">  
+      <input type="search" formControlName="minimumamounttopurchase" class="form-control mx-auto" placeholder="Montant minimum d'achat">
+    </div>
+      <div class="localisation my-3">
+      <input type="search" formControlName="limittimepromotion" class="form-control mx-auto" placeholder="Durée de la promotion (jours)">
+    </div>
+      <div class="localisation my-3">
+      <input type="search" formControlName="limittimetotakepromotion" class="form-control mx-auto" placeholder="Durée de retrait du produit (heure)">
+    </div>
+    <select class="hideLabel form-control mx-auto mt-3" formControlName="referenceproduct">
+        <option style="font-weight: bold">Choississez un produit : </option>
+        <!-- <option *ngFor="let categorie of categorys" ></option> -->
+      </select>
+      <div class="localisation my-3">
+      <input type="search" formControlName="quantityavailable" class="form-control mx-auto" placeholder="Quantité mise en promotion">
+    </div>
+    <button class="btn btn-success btn-lg mb-3" type="submit">
+        Créer ma promotion
+    </button>
+  </form>
+</div>
