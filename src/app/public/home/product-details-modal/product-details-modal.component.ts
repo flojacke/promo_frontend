@@ -27,23 +27,12 @@ export class ProductDetailsModalComponent implements OnInit {
   ngOnInit() {
 
 
-    this.promotion = new PromotionDTO();
-    this.idPromotion = sessionStorage.getItem('idPromotion');
-    this.promotionService.connectUsingGET(+(this.idPromotion)).subscribe(
-      (promotionRecu: Promotion) => {
-        this.promotion = promotionRecu;
-        this.shoplat = +(this.promotion.shopList[0].address.coordinates.latitude);
-        this.shoplong = +(this.promotion.shopList[0].address.coordinates.longitude);
+        this.shoplat = +(sessionStorage.getItem('latitudeCommerce'));
+        this.shoplong = +(sessionStorage.getItem('longitudeCommerce'));
         this.initMap( this.shoplong, this.shoplat);
         this.distance(this.xA, this.yA, this.shoplong, this.shoplat);
 
       }
-    );
-    this.list.push('PROFIT!!!');
-
-    // this.list.push(this.promotion.product.referenceProduct.name);
-
-  }
 
   isDataLoaded() {
     if (this.promotion.id === +(this.idPromotion)) {

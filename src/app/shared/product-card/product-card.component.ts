@@ -38,6 +38,8 @@ export class ProductCardComponent implements OnInit {
   openModalWithComponent() {
     console.log(this.idPromotion);
     console.log(this.promotion);
+    sessionStorage.setItem('latitudeCommerce', this.promotion.shopList[0].address.coordinates.latitude.toString());
+    sessionStorage.setItem('longitudeCommerce', this.promotion.shopList[0].address.coordinates.longitude.toString());
     sessionStorage.setItem('idPromotion', this.idPromotion.toString());
     const initialState = {
       list: [
