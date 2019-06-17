@@ -54,6 +54,7 @@ export class ProductCardComponent implements OnInit {
        this.promotion.shopList[0].name,
        this.promotion.shopList[0].address.number,
        this.promotion.shopList[0].address.addressType.name,
+       this.promotion.shopList[0].address.complement,
        this.promotion.shopList[0].address.name,
        this.promotion.shopList[0].address.city.name,
        this.promotion.shopList[0].address.city.postalCode
@@ -70,6 +71,7 @@ export class ProductCardComponent implements OnInit {
       quantityAvailable: this.promotion.quantityRemaining,
       shopName: this.promotion.shopList[0].name,
       shopAdresseStreetNumber: this.promotion.shopList[0].address.number,
+      shopAdresseStreetComplement: this.promotion.shopList[0].address.complement,
       shopAdresseStreetTypeName: this.promotion.shopList[0].address.addressType.name,
       shopAdresseStreetName: this.promotion.shopList[0].address.name,
       shopAdressePostalCode: this.promotion.shopList[0].address.city.postalCode,
