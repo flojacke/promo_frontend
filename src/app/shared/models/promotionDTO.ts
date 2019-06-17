@@ -25,6 +25,7 @@ export class PromotionDTO implements Promotion{
     description?: string;
     endDate?: Date;
     id?: number;
+    image?: string;
     initPrice?: number;
     isCumulative?: boolean;
     lastProduct?: Product;
