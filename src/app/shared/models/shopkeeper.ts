@@ -1,4 +1,5 @@
 import { User } from './user';
+import { Shop } from './shop';
 
 /**
  * Api Documentation
@@ -19,4 +20,5 @@ export interface Shopkeeper extends User {
     id?: number;
     lastName?: string;
     phoneNumber?: string;
+    shops?: Shop[];
 }
