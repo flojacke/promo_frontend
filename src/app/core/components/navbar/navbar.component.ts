@@ -10,12 +10,15 @@ export class NavbarComponent implements OnInit {
 
   ClientConnected = false;
 
-
   constructor() { }
 
   ngOnInit() {
     this.IsConnected();
   }
+
+  goToShopkeeperView() {
+    window.location.href = 'http://localhost:8081/invite/connexion/connexion.xhtml';
+  };
 
   IsConnected() {
     if (sessionStorage.getItem('type') === 'CLIENT') {
