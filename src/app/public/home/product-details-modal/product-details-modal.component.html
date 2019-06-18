@@ -4,57 +4,58 @@
     <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
-</div>
-<div class="modal-body">
-  <div class="container">
-    <div class="row">
+  </div>
+  <div class="modal-body">
+    <div class="container">
+      <div class="row">
         <div class="col justify-content-center">
-            <p class="card-text text-center"><img [src]="path + image" alt="" class="center"></p>
-            <h5 class="card-title text-center text-secondary">{{referenceProduct}}</h5>
-            <p class="card-text text-center text-secondary"><del>{{price}} €</del></p>
-            <h5 class="text-danger text-center">{{newPrice}} €</h5>
-            <p class="card-text text-center text-secondary">{{description}}</p>
-            <p class="card-text text-center text-secondary">Date d'expiration : {{limitDatePromotion | date:'dd/MM/yyyy'}}</p>
-            <p class="card-text text-center text-secondary">Délai de retrait : {{limitTimeWithdrawPromotion}}</p>
-            <form class="justify-content-center px-5" [formGroup]="bookForm" (ngSubmit)="onSubmit()">
-                <div class="input-group">
-                    <select class="custom-select text-secondary" formControlName="quantitySelected">
-                        <option selected>Quantité(s)</option>
-                        <option *ngFor="let in of counter(quantityAvailable) ;let i = index">{{i+1}}</option>
-                    </select>
-                    <div class="input-group-append">
-                      <button type="button" class="btn btn-outline-info btn-sm" (click)="onSubmit()" [disabled]="!ClientConnected">
-                        <i class="material-icons">add_shopping_cart</i>
-                      </button>
-                    </div>
-                  </div>
-                </form>         
+          <p class="card-text text-center"><img [src]="path + image" alt="" class="center"></p>
+          <h5 class="card-title text-center text-secondary">{{referenceProduct}}</h5>
+          <p class="card-text text-center text-secondary"><del>{{price}} €</del></p>
+          <h5 class="text-danger text-center">{{newPrice}} €</h5>
+          <p class="card-text text-center text-secondary">{{description}}</p>
+          <p class="card-text text-center text-secondary">Date d'expiration : {{limitDatePromotion | date:'dd/MM/yyyy'}}</p>
+          <p class="card-text text-center text-secondary">Délai de retrait :
+            {{limitTimeWithdrawPromotion.replace('PT', ' ').replace('H', ' Heures ').replace('M', ' Minutes ').replace('S', ' secondes ')}}
+          </p>
+          <form class="justify-content-center px-5" [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+            <div class="input-group">
+              <select class="custom-select text-secondary" formControlName="quantitySelected">
+                <option selected>Quantité(s)</option>
+                <option *ngFor="let in of counter(quantityAvailable) ;let i = index">{{i+1}}</option>
+              </select>
+              <div class="input-group-append">
+                <button type="button" class="btn btn-outline-info btn-sm" (click)="onSubmit()"
+                  [disabled]="!ClientConnected">
+                  <i class="material-icons">add_shopping_cart</i>
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
         <div class="col">
-            <h5 class="card-text text-sm-center text-info">{{shopName}}</h5> 
-            <p class="card-text text-sm-center text-secondary">{{shopAdresseStreetNumber}} {{shopAdresseStreetComplement}} {{shopAdresseStreetTypeName}} {{shopAdresseStreetName}} {{shopAdressePostalCode}} {{shopAdresseCity}}</p> 
-            <div id="map" style="height: 400px; width: 100%;"></div>
-            <h6 class="card-text text-info text-sm-center mt-3">Votre promotion est à : {{d}}</h6>
+          <h5 class="card-text text-sm-center text-info">{{shopName}}</h5>
+          <p class="card-text text-sm-center text-secondary">{{shopAdresseStreetNumber}} {{shopAdresseStreetComplement}}
+            {{shopAdresseStreetTypeName}} {{shopAdresseStreetName}} {{shopAdressePostalCode}} {{shopAdresseCity}}</p>
+          <div id="map" style="height: 400px; width: 100%;"></div>
+          <h6 class="card-text text-info text-sm-center mt-3">Votre promotion est à : {{d}}</h6>
         </div>
+      </div>
+
+
+
     </div>
 
 
-
-  </div>
-
-
-     <!-- <ul *ngIf="list.length">
+    <!-- <ul *ngIf="list.length">
       <li *ngFor="let item of list">{{item}}</li>
     </ul>  -->
 
-    
+
     <!-- <div *ngIf="isDataLoaded()">
         <div>hello{{promotion.product.referenceProduct.name}}</div>
         <div>{{d}}</div>
       </div> -->
-  
-</div>
-<!-- <div class="modal-footer">
-    <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">{{closeBtnName}}</button>
-</div> -->
+
+  </div>
 </div>

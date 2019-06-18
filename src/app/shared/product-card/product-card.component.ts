@@ -6,7 +6,6 @@ import {AlertModalComponent} from '../../alert-modal/alert-modal.component';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { PromotionControllerService, BookControllerService } from '../api/api.';
 import { Router, ActivatedRoute } from '@angular/router';
-import { stringify } from 'querystring';
 
 @Component({
   selector: 'app-product-card',
@@ -77,7 +76,7 @@ export class ProductCardComponent implements OnInit {
       price: this.promotion.initPrice.toFixed(2),
       newPrice: this.promotion.priceAfterPromotion.toFixed(2),
       limitDatePromotion: this.promotion.endDate,
-      limitTimeWithdrawPromotion: stringify(this.promotion.limitTimeTakePromotion).replace('PT', ' ').replace('H', ' Heures ').replace('M', ' Minutes ').replace('S', ' secondes '),
+      limitTimeWithdrawPromotion: this.promotion.limitTimeTakePromotion,
       quantityAvailable: this.promotion.quantityRemaining,
       shopName: this.promotion.shopList[0].name,
       shopAdresseStreetNumber: this.promotion.shopList[0].address.number,

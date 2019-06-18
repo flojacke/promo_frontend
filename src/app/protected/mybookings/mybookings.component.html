@@ -14,9 +14,11 @@
     </thead>
     <tbody>
       <tr *ngFor="let booking of bookingList">
-        <td>{{booking.reservationProduct.promotion.product.referenceProduct.name}}</td>
+        <td>
+          <img class="card-img-top" src="assets/img/products/{{booking.reservationProduct.promotion.product.image}}">
+          {{booking.reservationProduct.promotion.product.referenceProduct.name}}</td>
         <td>{{booking.reservationProduct.quantityRequested}}</td>
-        <td>{{booking.dateCreation}}</td>
+        <td>{{booking.dateCreation | date:'dd/MM/yyyy'}}</td>
       </tr>
     </tbody>
   </table>
