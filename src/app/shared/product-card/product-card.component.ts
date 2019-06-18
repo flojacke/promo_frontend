@@ -6,7 +6,7 @@ import {AlertModalComponent} from '../../alert-modal/alert-modal.component';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { PromotionControllerService, BookControllerService } from '../api/api.';
 import { Router, ActivatedRoute } from '@angular/router';
-import { stringify } from '@angular/compiler/src/util';
+import { stringify } from 'querystring';
 
 @Component({
   selector: 'app-product-card',
