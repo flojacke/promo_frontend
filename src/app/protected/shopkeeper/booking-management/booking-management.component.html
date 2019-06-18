@@ -10,17 +10,23 @@
         <th scope="col">Produit</th>
         <th scope="col">Quantité réservée</th>
         <th scope="col">Date de réservation</th>
+        <th scope="col">Code de retrait</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let booking of bookingList">
+      <tr *ngFor="let bookedPromo of bookedPromoList">
         <td>
-          <img class="card-img-top" src="assets/img/products/{{booking.reservationProduct.promotion.product.image}}">
-          {{booking.reservationProduct.promotion.product.referenceProduct.name}}</td>
-        <td>{{booking.reservationProduct.quantityRequested}}</td>
-        <td>{{booking.dateCreation | date:'dd/MM/yyyy'}}</td>
+          <img class="card-img-top" src="assets/img/products/{{bookedPromo.reservationProduct.promotion.product.image}}">
+          {{bookedPromo.reservationProduct.promotion.product.referenceProduct.name}}</td>
+        <td>{{bookedPromo.reservationProduct.quantityRequested}}</td>
+        <td>{{bookedPromo.dateCreation | date:'dd/MM/yyyy'}}</td>
+        <td>
+          <input type="text" class="form-control" required>
+        </td>
+        <td>
+          <button type="submit" class="btn btn-success text-uppercase">Valider</button>
+        </td>
       </tr>
     </tbody>
   </table>
 </div>
-  

@@ -16,6 +16,7 @@ export class BookingManagementComponent implements OnInit {
   constructor(private reservationService: ReservationControllerService) { }
 
   ngOnInit() {
+    this.getBookinglist();
   }
 
   getBookinglist() {
