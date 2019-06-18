@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Promotion } from 'src/app/shared/models/models';
-import { PromotionDTO } from 'src/app/shared/models/promotionDTO';
 import { PromotionControllerService } from 'src/app/shared/api/promotionController.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { BookControllerService } from 'src/app/shared/api/api.';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-product-details-modal',
@@ -26,7 +26,8 @@ export class ProductDetailsModalComponent implements OnInit {
   ClientConnected: boolean;
 
   constructor(public bsModalRef: BsModalRef, private promotionService: PromotionControllerService,
-              private bookService: BookControllerService, private formBuilder: FormBuilder) {}
+              private bookService: BookControllerService, private formBuilder: FormBuilder,
+              private router: Router, private route: ActivatedRoute) {}
 
 
   ngOnInit() {
@@ -49,9 +50,10 @@ export class ProductDetailsModalComponent implements OnInit {
         this.bookService
         .bookUsingPOST((+(sessionStorage.getItem('idPromotion'))), (+(quantitSelected)), (+(sessionStorage.getItem('userConnecte'))) )
         .subscribe(
-          () => { }
+          () => {this.router.navigate(['/mybookings']); }
            ,
-          (error) => { }
+          (error) => {this.bsModalRef.hide();
+                      this.router.navigate(['/mybookings']); }
         );
     }
 

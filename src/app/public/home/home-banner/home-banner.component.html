@@ -34,7 +34,6 @@
         *ngFor="let promotion of promotions"
         [icon]="path + promotion.product.image"
         [title]="promotion.name"
-        [referenceProduct]="promotion.product.referenceProduct.name"
         [price]="promotion.initPrice.toFixed(2)"
         [description]="promotion.description"
         [idPromotion]="promotion.id"
@@ -42,7 +41,8 @@
         [newPrice]="promotion.priceAfterPromotion.toFixed(2)"
         [limitDatePromotion]="promotion.endDate"
         [limitTimeWithdrawPromotion]="promotion.limitTimeTakePromotion"
-        [quantityAvailable]="promotion.quantityRemaining">
+        [quantityAvailable]="promotion.quantityRemaining"
+        [referenceProduct]="promotion.product.referenceProduct.name">
       </app-product-card>
     </div>
   
