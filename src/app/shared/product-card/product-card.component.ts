@@ -3,6 +3,9 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ProductDetailsModalComponent } from 'src/app/public/home/product-details-modal/product-details-modal.component';
 import { PromotionDTO } from '../models/promotionDTO';
 import {AlertModalComponent} from '../../alert-modal/alert-modal.component';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { PromotionControllerService, BookControllerService } from '../api/api.';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-product-card',
@@ -12,6 +15,7 @@ import {AlertModalComponent} from '../../alert-modal/alert-modal.component';
 export class ProductCardComponent implements OnInit {
 
   ClientConnected = false;
+  bookForm: FormGroup;
 
   @Input() icon: string;
   @Input() title: string;
@@ -29,15 +33,19 @@ export class ProductCardComponent implements OnInit {
   bsModalRef: BsModalRef;
   alertModalComponent: AlertModalComponent;
 
-  constructor(private modalService: BsModalService) {}
+  constructor(private modalService: BsModalService, private promotionService: PromotionControllerService,
+              private bookService: BookControllerService, private formBuilder: FormBuilder,
+              private router: Router, private route: ActivatedRoute) {}
 
   counter(i: number) {
     return new Array(i);
   }
-  
+
   openModalWithComponent() {
     console.log(this.idPromotion);
     console.log(this.promotion);
+    sessionStorage.setItem('latitudeCommerce', this.promotion.shopList[0].address.coordinates.latitude.toString());
+    sessionStorage.setItem('longitudeCommerce', this.promotion.shopList[0].address.coordinates.longitude.toString());
     sessionStorage.setItem('idPromotion', this.idPromotion.toString());
     const initialState = {
       list: [
@@ -94,6 +102,9 @@ export class ProductCardComponent implements OnInit {
   // constructor() { }
 
   ngOnInit() {
+    this.bookForm = this.formBuilder.group({
+      quantitySelected: []
+    });
     this.IsConnected();
   }
 
@@ -104,4 +115,18 @@ export class ProductCardComponent implements OnInit {
       this.ClientConnected = false;
     }
   }
+
+  onSubmit() {
+    console.log('dedans');
+    const quantitSelected = this.bookForm.get('quantitySelected').value;
+    console.log(quantitSelected);
+    this.bookService
+    .bookUsingPOST(this.promotion.id, (+(quantitSelected)), (+(sessionStorage.getItem('userConnecte'))) )
+    .subscribe(
+      () => {this.router.navigate(['/mybookings']); }
+       ,
+      (error) => {this.router.navigate(['/mybookings']); }
+    );
+}
+
 }

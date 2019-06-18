@@ -18,13 +18,14 @@ import { CustomHttpUrlEncodingCodec }                        from '../../../../e
 
 import { Observable }                                        from 'rxjs/Observable';
 
-import { Promotion } from '../models/promotion';
+import { Reservation } from '../models/reservation';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../../../../variables';
 import { Configuration }                                     from '../../../../configuration';
 
+
 @Injectable()
-export class PromotionControllerService {
+export class ReservationControllerService {
 
     protected basePath = 'http://localhost:8081';
     public defaultHeaders = new HttpHeaders();
@@ -56,18 +57,18 @@ export class PromotionControllerService {
 
 
     /**
-     * connect
+     * getBookList
      * 
-     * @param idPromotion idPromotion
+     * @param idCommercant idCommercant
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public connectUsingGET(idPromotion: number, observe?: 'body', reportProgress?: boolean): Observable<Promotion>;
-    public connectUsingGET(idPromotion: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Promotion>>;
-    public connectUsingGET(idPromotion: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Promotion>>;
-    public connectUsingGET(idPromotion: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
-        if (idPromotion === null || idPromotion === undefined) {
-            throw new Error('Required parameter idPromotion was null or undefined when calling connectUsingGET.');
+    public getBookListUsingPOST1(idCommercant: number, observe?: 'body', reportProgress?: boolean): Observable<Array<Reservation>>;
+    public getBookListUsingPOST1(idCommercant: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Reservation>>>;
+    public getBookListUsingPOST1(idCommercant: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Reservation>>>;
+    public getBookListUsingPOST1(idCommercant: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (idCommercant === null || idCommercant === undefined) {
+            throw new Error('Required parameter idCommercant was null or undefined when calling getBookListUsingPOST1.');
         }
 
         let headers = this.defaultHeaders;
@@ -83,9 +84,11 @@ export class PromotionControllerService {
 
         // to determine the Content-Type header
         let consumes: string[] = [
+            'application/json'
         ];
 
-        return this.httpClient.get<Promotion>(`${this.basePath}/api/promotion/${encodeURIComponent(String(idPromotion))}`,
+        return this.httpClient.post<Array<Reservation>>(`${this.basePath}/reservation/byCommercant/${encodeURIComponent(String(idCommercant))}`,
+            null,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,

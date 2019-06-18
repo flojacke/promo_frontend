@@ -11,7 +11,6 @@
  */
 /* tslint:disable:no-unused-variable member-ordering */
 
-
 import { Inject, Injectable, Optional }                      from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams,
          HttpResponse, HttpEvent }                           from '@angular/common/http';
@@ -60,16 +59,20 @@ export class BookControllerService {
      * créer une reservation
      * 
      * @param id id
+     * @param idClient idClient
      * @param quantityBooked quantityBooked
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public bookUsingPOST(id: number, quantityBooked: number, observe?: 'body', reportProgress?: boolean): Observable<Array<any>>;
-    public bookUsingPOST(id: number, quantityBooked: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<any>>>;
-    public bookUsingPOST(id: number, quantityBooked: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<any>>>;
-    public bookUsingPOST(id: number, quantityBooked: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public bookUsingPOST(id: number, idClient: number, quantityBooked: number, observe?: 'body', reportProgress?: boolean): Observable<Array<any>>;
+    public bookUsingPOST(id: number, idClient: number, quantityBooked: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<any>>>;
+    public bookUsingPOST(id: number, idClient: number, quantityBooked: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<any>>>;
+    public bookUsingPOST(id: number, idClient: number, quantityBooked: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (id === null || id === undefined) {
             throw new Error('Required parameter id was null or undefined when calling bookUsingPOST.');
+        }
+        if (idClient === null || idClient === undefined) {
+            throw new Error('Required parameter idClient was null or undefined when calling bookUsingPOST.');
         }
         if (quantityBooked === null || quantityBooked === undefined) {
             throw new Error('Required parameter quantityBooked was null or undefined when calling bookUsingPOST.');
@@ -91,7 +94,7 @@ export class BookControllerService {
             'application/json'
         ];
 
-        return this.httpClient.post<Array<any>>(`${this.basePath}/api/bookcontroller/book/${encodeURIComponent(String(id))}/${encodeURIComponent(String(quantityBooked))}`,
+        return this.httpClient.post<Array<any>>(`${this.basePath}/api/bookcontroller/book/${encodeURIComponent(String(id))}/${encodeURIComponent(String(quantityBooked))}/${encodeURIComponent(String(idClient))}`,
             null,
             {
                 withCredentials: this.configuration.withCredentials,

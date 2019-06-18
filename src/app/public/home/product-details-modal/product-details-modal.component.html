@@ -18,20 +18,23 @@
         </div>
         <div class="col">
             <div id="map" style="height: 400px; width: 100%;" ></div>
-            <p class="card-text">Adresse</p> 
+            <p>distance à parcourir: {{d}}</p>
+            <p class="card-text">Adresse:</p> 
             <p class="card-text">{{shopName}}</p> 
             <p class="card-text">{{shopAdresseStreetNumber}} {{shopAdresseStreetComplement}} {{shopAdresseStreetTypeName}} {{shopAdresseStreetName}} {{shopAdressePostalCode}} {{shopAdresseCity}}</p>  
+            <form class="justify-content-center px-5" [formGroup]="bookForm" (ngSubmit)="onSubmit()">
             <div class="input-group">
-                <select class="custom-select">
+                <select class="custom-select" formControlName="quantitySelected">
                     <option selected>Quantité(s)</option>
                     <option *ngFor="let in of counter(quantityAvailable) ;let i = index">{{i+1}}</option>
                 </select>
                 <div class="input-group-append">
-                  <button type="button" class="btn btn-outline-info btn-sm" [disabled]="!ClientConnected">
+                  <button type="button" class="btn btn-outline-info btn-sm" (click)="onSubmit()" [disabled]="!ClientConnected">
                     <i class="material-icons">add_shopping_cart</i>
                   </button>
                 </div>
               </div>
+            </form>
         </div>
     </div>
 
