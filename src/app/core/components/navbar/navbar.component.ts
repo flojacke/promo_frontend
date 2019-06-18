@@ -27,4 +27,8 @@ export class NavbarComponent implements OnInit {
       this.ClientConnected = false;
     }
   }
+
+  logout() {
+    sessionStorage.clear();
+  }
 }

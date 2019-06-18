@@ -15,24 +15,27 @@
       <li *ngIf="ClientConnected" class="nav-item">
         <a class="nav-link" href="mybookings">Mes Réservations</a>
       </li>
-      <li class="nav-item">
+      <li *ngIf="ClientConnected" class="nav-item">
         <a class="nav-link" href="addpromotion">Créer une promotion</a>
       </li>
-      <li class="nav-item">
+      <li *ngIf="ClientConnected" class="nav-item">
         <a class="nav-link" href="bookingmanagement">Gérer les Réservations</a>
+      </li>
+      <li *ngIf="!ClientConnected" class="nav-item">
+        <a class="nav-link" href="#">Inscription</a>
       </li>
       <li class="nav-item dropdown" *ngIf="!ClientConnected">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
           Connexion
         </a>
-        <div class="dropdown-menu dropdown-menu-right bg-secondary" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item text-white" href="login">Client</a>
-          <button class="dropdown-item text-white" (click)="goToShopkeeperView()">Commerçant</button>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="login">Client</a>
+          <button class="dropdown-item" (click)="goToShopkeeperView()">Commerçant</button>
         </div>
       </li>
       <li *ngIf="ClientConnected" class="nav-item">
-        <a class="nav-link" href="#">Se Déconnecter</a>
+        <a class="nav-link bg-dark" href="home" (click)="logout()">Déconnexion</a>
       </li>
     </ul>
   </div>

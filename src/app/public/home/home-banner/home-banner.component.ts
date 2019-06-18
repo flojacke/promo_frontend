@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
 import { RequestSearchDTO, CategoryProduct, Promotion } from 'src/app/shared/models/models';
 import { Subscription } from 'rxjs';
 import { RequestSearchDTOimpl } from 'src/app/shared/models/RequestSearchDTOimpl';
@@ -53,8 +52,7 @@ getAllPromotions() {
     (data) => {
       this.promotions = data;
     },
-    (err) => {
-}
+    (err) => { }
 );
 }
 
