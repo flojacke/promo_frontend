@@ -12,13 +12,13 @@
       <li *ngIf="ClientConnected" class="nav-item">
         <a class="nav-link" href="profil">Profil</a>
       </li>
-      <li *ngIf="ClientConnected" class="nav-item">
+      <li *ngIf="ClientConnected && IsClient" class="nav-item">
         <a class="nav-link" href="mybookings">Mes Réservations</a>
       </li>
-      <li *ngIf="ClientConnected" class="nav-item">
+      <li *ngIf="ClientConnected && !IsClient" class="nav-item">
         <a class="nav-link" href="addpromotion">Créer une promotion</a>
       </li>
-      <li *ngIf="ClientConnected" class="nav-item">
+      <li *ngIf="ClientConnected && !IsClient" class="nav-item">
         <a class="nav-link" href="bookingmanagement">Gérer les Réservations</a>
       </li>
       <li *ngIf="!ClientConnected" class="nav-item">

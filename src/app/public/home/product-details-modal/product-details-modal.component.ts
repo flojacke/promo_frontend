@@ -48,7 +48,7 @@ export class ProductDetailsModalComponent implements OnInit {
         const quantitSelected = this.bookForm.get('quantitySelected').value;
         console.log(quantitSelected);
         this.bookService
-        .bookUsingPOST((+(sessionStorage.getItem('idPromotion'))), (+(quantitSelected)), (+(sessionStorage.getItem('userConnecte'))) )
+        .bookUsingPOST((+(sessionStorage.getItem('idPromotion'))), (+(quantitSelected)), (+(sessionStorage.getItem('userConnected'))) )
         .subscribe(
           () => {this.router.navigate(['/mybookings']); }
            ,

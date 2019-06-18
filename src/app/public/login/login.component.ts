@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   signInForm: FormGroup;
   errorMessage: string;
   isAuthenticated: boolean;
-  userConnecte: User;
+  userConnected: User;
   error: string;
 
   constructor(private formBuilder: FormBuilder, private connexionService: ConnectionControllerService,
@@ -35,16 +35,18 @@ export class LoginComponent implements OnInit {
     const login = this.signInForm.get('login').value;
     const password = this.signInForm.get('password').value;
     this.connexionService.connectUsingPOST(login, password).subscribe(
-      (resp) => {  this.userConnecte = resp;
-                   sessionStorage.setItem('userConnecte', this.userConnecte.id.toString());
-                   sessionStorage.setItem('type', this.userConnecte.type);
+      (resp) => {  this.userConnected = resp;
+                   sessionStorage.setItem('userConnected', this.userConnected.id.toString());
+                   sessionStorage.setItem('type', this.userConnected.type);
        },
       (error) => {this.errorMessage = error.error.message; },
-      () =>  { if ( sessionStorage.getItem('type') === 'CLIENT' ) {
+      () =>  {
+        console.log(this.userConnected);
+      //   if ( sessionStorage.getItem('type') === 'CLIENT' ) {
         window.location.href ='http://localhost:4200/home';
-      } else {
-        window.location.href = 'http://localhost:8081/invite/connexion/connexion.xhtml';
-      }
+      // } else {
+      //   window.location.href = 'http://localhost:8081/invite/connexion/connexion.xhtml';
+      // }
       }
     );
 

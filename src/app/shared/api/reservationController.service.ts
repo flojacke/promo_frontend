@@ -57,18 +57,18 @@ export class ReservationControllerService {
 
 
     /**
-     * getBookList
+     * getBookedPromotionList
      * 
      * @param idCommercant idCommercant
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getBookListUsingPOST1(idCommercant: number, observe?: 'body', reportProgress?: boolean): Observable<Array<Reservation>>;
-    public getBookListUsingPOST1(idCommercant: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Reservation>>>;
-    public getBookListUsingPOST1(idCommercant: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Reservation>>>;
-    public getBookListUsingPOST1(idCommercant: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getBookedPromotionListUsingPOST(idCommercant: number, observe?: 'body', reportProgress?: boolean): Observable<Array<Reservation>>;
+    public getBookedPromotionListUsingPOST(idCommercant: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Array<Reservation>>>;
+    public getBookedPromotionListUsingPOST(idCommercant: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Array<Reservation>>>;
+    public getBookedPromotionListUsingPOST(idCommercant: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
         if (idCommercant === null || idCommercant === undefined) {
-            throw new Error('Required parameter idCommercant was null or undefined when calling getBookListUsingPOST1.');
+            throw new Error('Required parameter idCommercant was null or undefined when calling getBookedPromotionListUsingPOST.');
         }
 
         let headers = this.defaultHeaders;

@@ -20,10 +20,9 @@ export class MybookingsComponent implements OnInit {
   }
 
   getBookinglist() {
-    let userId = (+(sessionStorage.getItem('userConnecte')));
+    let userId = (+(sessionStorage.getItem('userConnected')));
     this.bookingSubscription = this.clientService.getBookListUsingPOST(userId).subscribe(
       (data) => {
-        console.log(data);
         this.bookingList = data;
       },
       (err) => { }

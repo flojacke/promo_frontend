@@ -126,7 +126,7 @@ export class ProductCardComponent implements OnInit {
     const quantitSelected = this.bookForm.get('quantitySelected').value;
     console.log(quantitSelected);
     this.bookService
-    .bookUsingPOST(this.promotion.id, (+(quantitSelected)), (+(sessionStorage.getItem('userConnecte'))) )
+    .bookUsingPOST(this.promotion.id, (+(quantitSelected)), (+(sessionStorage.getItem('userConnected'))) )
     .subscribe(
       () => {this.router.navigate(['/mybookings']); }
        ,

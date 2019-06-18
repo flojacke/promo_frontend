@@ -1,3 +1,26 @@
-<p>
-  booking-management works!
-</p>
+<div class="container">
+
+  <hr>
+  <h2 class="text-center">Gérer mes réservations</h2>
+  <hr>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Produit</th>
+        <th scope="col">Quantité réservée</th>
+        <th scope="col">Date de réservation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let booking of bookingList">
+        <td>
+          <img class="card-img-top" src="assets/img/products/{{booking.reservationProduct.promotion.product.image}}">
+          {{booking.reservationProduct.promotion.product.referenceProduct.name}}</td>
+        <td>{{booking.reservationProduct.quantityRequested}}</td>
+        <td>{{booking.dateCreation | date:'dd/MM/yyyy'}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+  

@@ -9,22 +9,30 @@ import { Component, OnInit } from '@angular/core';
 export class NavbarComponent implements OnInit {
 
   ClientConnected = false;
+  IsClient : boolean;
 
   constructor() { }
 
   ngOnInit() {
-    this.IsConnected();
+    this.isConnected();
+    this.getUserType();
   }
 
   goToShopkeeperView() {
     window.location.href = 'http://localhost:8081/invite/connexion/connexion.xhtml';
   };
 
-  IsConnected() {
-    if (sessionStorage.getItem('type') === 'CLIENT') {
+  isConnected() {
+    if (sessionStorage.getItem('userConnected')) {
       this.ClientConnected = true;
-    } else {
-      this.ClientConnected = false;
+    }
+  }
+
+  getUserType() {
+    if (sessionStorage.getItem('type') === 'CLIENT') {
+      this.IsClient = true;
+    } else if (sessionStorage.getItem('type') === 'CLIENT') {
+      this.IsClient = false;
     }
   }
 
