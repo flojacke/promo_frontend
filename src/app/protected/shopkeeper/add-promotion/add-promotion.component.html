@@ -1,12 +1,6 @@
 <div class="jumbotron text-center">
 <h2 class="text-info">Créer votre promotion</h2>
 <form class="justify-content-center px-5" (ngSubmit)="onSubmit()"> <!-- [formGroup]="createPromotionForm" -->
-    
-    <select class="hideLabel form-control mx-auto mt-3" formControlName="categorie">
-     <option style="font-weight: bold">Choisissez un Commerce : </option>
-     <!-- <option *ngFor="let categorie of categorys" ></option> -->
-   </select>
-
     <div class="localisation my-3">
       <input type="search" formControlName="promotionname" class="form-control mx-auto" placeholder="Nom de la promotion">
     </div>
@@ -14,12 +8,15 @@
       <input type="search" formControlName="promotiondescription" class="form-control mx-auto" placeholder="Description de la promotion">
     </div>
     <select class="hideLabel form-control mx-auto mt-3" formControlName="shoplist">
-        <option style="font-weight: bold">Choisissez un Commerce : </option>
-        <!-- <option *ngFor="let categorie of categorys" ></option> -->
+        <option selected style="font-weight: bold">Choisissez un Commerce : </option>
+        <option>1</option>
+        <option>2</option>
       </select>
       <select class="hideLabel form-control mx-auto mt-3" formControlName="promotiontype">
-          <option style="font-weight: bold">Type de promotion : </option>
-          <!-- <option *ngFor="let categorie of categorys" ></option> -->
+          <option selected style="font-weight: bold">Types de promotion disponibles : </option>
+          <option>Pourcentage</option>
+          <option>Remise</option>
+          <option>Pack</option>
         </select>
       <div class="localisation my-3">  
       <input type="search" formControlName="promotiondescription" class="form-control mx-auto" placeholder="Valeur du pourcentage de remise">
@@ -35,7 +32,7 @@
     </div>
     <select class="hideLabel form-control mx-auto mt-3" formControlName="referenceproduct">
         <option style="font-weight: bold">Choississez un produit : </option>
-        <!-- <option *ngFor="let categorie of categorys" ></option> -->
+        <option *ngFor="let product of products" > {{product.referenceProduct.name}} - Prix Initial : {{product.initPrice}} € / {{product.referenceProduct.salesUnit.name}}, {{product.description}}</option>
       </select>
       <div class="localisation my-3">
       <input type="search" formControlName="quantityavailable" class="form-control mx-auto" placeholder="Quantité mise en promotion">
