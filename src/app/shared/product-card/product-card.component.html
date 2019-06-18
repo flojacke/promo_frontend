@@ -2,12 +2,12 @@
   <img class="card-img-top" [src]="icon" alt="">
   <div class="card-body">
     <h5 class="text-info">{{title}}</h5>
-    <h5 class="card-title">{{referenceProduct}}</h5>
-    <del>{{price}} €</del>
+    <h5 class="card-title text-secondary">{{referenceProduct}}</h5>
+    <p class="card-text text-center text-secondary"><del>{{price}} €</del></p>
     <h5 class="text-danger">{{newPrice}} €</h5>
-    <p class="card-text">Date d'expiration : {{limitDatePromotion | date:'dd/MM/yyyy'}}</p>
-    <p class="card-text">Délai de retrait : {{limitTimeWithdrawPromotion}}</p>
-    <p class="card-text">Quantité(s) restante : {{quantityAvailable}} Unité(s)</p>
+    <p class="card-text text-secondary">Date d'expiration : {{limitDatePromotion | date:'dd/MM/yyyy'}}</p>
+    <p class="card-text text-secondary">Délai de retrait : {{limitTimeWithdrawPromotion}}</p>
+    <p class="card-text text-secondary">Quantité(s) restante : {{quantityAvailable}} Unité(s)</p>
     <form class="justify-content-center px-5" [formGroup]="bookForm" (ngSubmit)="onSubmit()">
         <div class="input-group">
             <select class="custom-select" formControlName="quantitySelected">
