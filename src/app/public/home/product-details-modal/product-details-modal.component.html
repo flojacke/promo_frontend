@@ -8,33 +8,33 @@
 <div class="modal-body">
   <div class="container">
     <div class="row">
-        <div class="col">
-            <img [src]="path + image" alt="">
-            <h5 class="card-title">{{referenceProduct}}</h5>
-            <del>{{price}} €</del>
-            <h5 class="text-danger">{{newPrice}} €</h5>
-            <p class="card-text">Date d'expiration : {{limitDatePromotion | date:'dd/MM/yyyy'}}</p>
-            <p class="card-text">Délai de retrait : {{limitTimeWithdrawPromotion}}</p>          
+        <div class="col justify-content-center">
+            <p class="card-text text-center"><img [src]="path + image" alt="" class="center"></p>
+            <h5 class="card-title text-center text-secondary">{{referenceProduct}}</h5>
+            <p class="card-text text-center text-secondary"><del>{{price}} €</del></p>
+            <h5 class="text-danger text-center">{{newPrice}} €</h5>
+            <p class="card-text text-center text-secondary">{{description}}</p>
+            <p class="card-text text-center text-secondary">Date d'expiration : {{limitDatePromotion | date:'dd/MM/yyyy'}}</p>
+            <p class="card-text text-center text-secondary">Délai de retrait : {{limitTimeWithdrawPromotion}}</p>
+            <form class="justify-content-center px-5" [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+                <div class="input-group">
+                    <select class="custom-select text-secondary" formControlName="quantitySelected">
+                        <option selected>Quantité(s)</option>
+                        <option *ngFor="let in of counter(quantityAvailable) ;let i = index">{{i+1}}</option>
+                    </select>
+                    <div class="input-group-append">
+                      <button type="button" class="btn btn-outline-info btn-sm" (click)="onSubmit()" [disabled]="!ClientConnected">
+                        <i class="material-icons">add_shopping_cart</i>
+                      </button>
+                    </div>
+                  </div>
+                </form>         
         </div>
         <div class="col">
-            <div id="map" style="height: 400px; width: 100%;" ></div>
-            <p>distance à parcourir: {{d}}</p>
-            <p class="card-text">Adresse:</p> 
-            <p class="card-text">{{shopName}}</p> 
-            <p class="card-text">{{shopAdresseStreetNumber}} {{shopAdresseStreetComplement}} {{shopAdresseStreetTypeName}} {{shopAdresseStreetName}} {{shopAdressePostalCode}} {{shopAdresseCity}}</p>  
-            <form class="justify-content-center px-5" [formGroup]="bookForm" (ngSubmit)="onSubmit()">
-            <div class="input-group">
-                <select class="custom-select" formControlName="quantitySelected">
-                    <option selected>Quantité(s)</option>
-                    <option *ngFor="let in of counter(quantityAvailable) ;let i = index">{{i+1}}</option>
-                </select>
-                <div class="input-group-append">
-                  <button type="button" class="btn btn-outline-info btn-sm" (click)="onSubmit()" [disabled]="!ClientConnected">
-                    <i class="material-icons">add_shopping_cart</i>
-                  </button>
-                </div>
-              </div>
-            </form>
+            <h5 class="card-text text-sm-center text-info">{{shopName}}</h5> 
+            <p class="card-text text-sm-center text-secondary">{{shopAdresseStreetNumber}} {{shopAdresseStreetComplement}} {{shopAdresseStreetTypeName}} {{shopAdresseStreetName}} {{shopAdressePostalCode}} {{shopAdresseCity}}</p> 
+            <div id="map" style="height: 400px; width: 100%;"></div>
+            <h6 class="card-text text-info text-sm-center mt-3">Votre promotion est à : {{d}}</h6>
         </div>
     </div>
 

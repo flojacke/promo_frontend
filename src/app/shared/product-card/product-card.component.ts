@@ -6,6 +6,7 @@ import {AlertModalComponent} from '../../alert-modal/alert-modal.component';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { PromotionControllerService, BookControllerService } from '../api/api.';
 import { Router, ActivatedRoute } from '@angular/router';
+import { stringify } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-product-card',
@@ -42,6 +43,7 @@ export class ProductCardComponent implements OnInit {
   }
 
   openModalWithComponent() {
+
     console.log(this.idPromotion);
     console.log(this.promotion);
     sessionStorage.setItem('latitudeCommerce', this.promotion.shopList[0].address.coordinates.latitude.toString());
@@ -75,7 +77,7 @@ export class ProductCardComponent implements OnInit {
       price: this.promotion.initPrice.toFixed(2),
       newPrice: this.promotion.priceAfterPromotion.toFixed(2),
       limitDatePromotion: this.promotion.endDate,
-      limitTimeWithdrawPromotion: this.promotion.limitTimeTakePromotion,
+      limitTimeWithdrawPromotion: stringify(this.promotion.limitTimeTakePromotion).replace('PT', ' ').replace('H', ' Heures ').replace('M', ' Minutes ').replace('S', ' secondes '),
       quantityAvailable: this.promotion.quantityRemaining,
       shopName: this.promotion.shopList[0].name,
       shopAdresseStreetNumber: this.promotion.shopList[0].address.number,
@@ -89,6 +91,7 @@ export class ProductCardComponent implements OnInit {
         return new Array(i);
       }
     };
+
     this.bsModalRef = this.modalService.show(ProductDetailsModalComponent, {initialState, class: 'modal-lg'});
     this.bsModalRef.content.closeBtnName = 'Close';
   }
@@ -106,6 +109,9 @@ export class ProductCardComponent implements OnInit {
       quantitySelected: []
     });
     this.IsConnected();
+    // let limitTimeWithdrawPromotionFormatted: string;
+    // limitTimeWithdrawPromotionFormatted = stringify(this.promotion.limitTimeTakePromotion).replace('PT', ' ').replace('H', ' Heures ').replace('M', ' Minutes ').replace('S', ' secondes ');
+    // console.log('nicolas test : ' + limitTimeWithdrawPromotionFormatted);
   }
 
   IsConnected() {

@@ -26,7 +26,7 @@
 <div class="container">
 
     <hr>
-    <h2 class="text-center">Promotions en cours</h2>
+    <h2 class="text-center  text-secondary">Promotions en cours</h2>
     <hr>
   
     <div class="row">
@@ -40,7 +40,7 @@
         [promotion]="promotion"
         [newPrice]="promotion.priceAfterPromotion.toFixed(2)"
         [limitDatePromotion]="promotion.endDate"
-        [limitTimeWithdrawPromotion]="promotion.limitTimeTakePromotion"
+        [limitTimeWithdrawPromotion]="promotion.limitTimeTakePromotion.replace('PT', ' ').replace('H', ' Heures ').replace('M', ' Minutes ').replace('S', ' secondes ')"
         [quantityAvailable]="promotion.quantityRemaining"
         [referenceProduct]="promotion.product.referenceProduct.name">
       </app-product-card>
