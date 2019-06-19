@@ -38,9 +38,8 @@ export class BookingManagementComponent implements OnInit {
     this.reservationManagementControllerService.validateReservationUsingPOST(idReservation, withDrawalCode).subscribe(
       (resp) => { this.router.navigate(['/bookingmanagement']); },
       (error) => {this.router.navigate(['/bookingmanagement']); },
-      () => { this.router.navigate(['/bookingmanagement']); }
+      () => { location.reload(); }
     );
-    location.reload();
   }
 
 }
