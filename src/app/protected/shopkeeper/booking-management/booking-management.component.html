@@ -4,32 +4,38 @@
   <h2 class="text-center">Gérer mes réservations</h2>
   <hr>
 
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th scope="col">Produit</th>
-        <th scope="col">Quantité réservée</th>
-        <th scope="col">Date de réservation</th>
-      </tr>
-    </thead>
-    <tbody *ngFor="let bookedPromo of bookedPromoList; let i = index">
-      <tr>
-        <td>
-          <img src="assets/img/products/{{bookedPromo.reservationProduct.promotion.product.image}}">
-          {{bookedPromo.reservationProduct.promotion.product.referenceProduct.name}}</td>
-        <td>{{bookedPromo.reservationProduct.quantityRequested}}</td>
-        <td>{{bookedPromo.dateCreation | date:'dd/MM/yyyy'}}</td>
-        <td>
-          <input *ngIf="!bookedPromo.reservationProduct.withdrawalDate" type="text" placeholder="Code de retrait"
-            class="form-control" [(ngModel)]="code[i]">
-          <h5><span *ngIf="bookedPromo.reservationProduct.withdrawalDate" class="badge badge-danger">
-            Produit retiré</span></h5>
-        </td>
-        <td>
-          <button *ngIf="!bookedPromo.reservationProduct.withdrawalDate" type="submit" class="btn btn-success"
-            (click)="validateBooking(bookedPromo.id, code[i])">Valider</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Produit</th>
+          <th scope="col"></th>
+          <th scope="col">Quantité réservée</th>
+          <th scope="col">Date de réservation</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let bookedPromo of bookedPromoList; let i = index">
+        <tr>
+          <td>
+            <img src="assets/img/products/{{bookedPromo.reservationProduct.promotion.product.image}}">
+          </td><td><p class="text-justify">{{bookedPromo.reservationProduct.promotion.product.referenceProduct.name}}</p>
+          </td>
+          <td>{{bookedPromo.reservationProduct.quantityRequested}}</td>
+          <td>{{bookedPromo.dateCreation | date:'dd/MM/yyyy'}}</td>
+          <td>
+            <input *ngIf="!bookedPromo.reservationProduct.withdrawalDate" type="text" placeholder="Code de retrait"
+              class="form-control" [(ngModel)]="code[i]">
+            <h5><span *ngIf="bookedPromo.reservationProduct.withdrawalDate" class="badge badge-danger">
+              Produit retiré</span></h5>
+          </td>
+          <td>
+            <button *ngIf="!bookedPromo.reservationProduct.withdrawalDate" type="submit" class="btn btn-success"
+              (click)="validateBooking(bookedPromo.id, code[i])">Valider</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
