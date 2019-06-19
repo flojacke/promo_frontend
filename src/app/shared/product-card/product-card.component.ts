@@ -128,8 +128,7 @@ export class ProductCardComponent implements OnInit {
     this.bookService
     .bookUsingPOST(this.promotion.id, (+(quantitSelected)), (+(sessionStorage.getItem('userConnected'))) )
     .subscribe(
-      () => {this.router.navigate(['/mybookings']); }
-       ,
+      () => {this.router.navigate(['/mybookings']); },
       (error) => {this.router.navigate(['/mybookings']); }
     );
 }

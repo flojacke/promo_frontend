@@ -7,6 +7,7 @@ import { MybookingsComponent } from './protected/mybookings/mybookings.component
 import { AddPromotionComponent } from './protected/shopkeeper/add-promotion/add-promotion.component';
 import { BookingManagementComponent } from './protected/shopkeeper/booking-management/booking-management.component';
 import { ProfilComponent } from './protected/profil/profil.component';
+import { DashboardComponent } from './protected/shopkeeper/dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'addpromotion', component: AddPromotionComponent },
   { path: 'bookingmanagement', component: BookingManagementComponent },
   { path: 'profil', component: ProfilComponent },
+  { path: 'dashboard', component: DashboardComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 

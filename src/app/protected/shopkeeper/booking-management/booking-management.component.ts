@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ReservationControllerService } from 'src/app/shared/api/api.';
+import { ReservationControllerService, ReservationManagementControllerService } from 'src/app/shared/api/api.';
 import { Reservation } from 'src/app/shared/models/models';
 import { Subscription } from 'rxjs';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-booking-management',
@@ -13,15 +13,14 @@ export class BookingManagementComponent implements OnInit {
 
   bookedPromoSubscription: Subscription;
   bookedPromoList: Reservation[];
-  validateBookingForm: FormGroup;
+  public code : any = {};
 
-  constructor(private formBuilder: FormBuilder, private reservationService: ReservationControllerService) { }
+  constructor(private reservationService: ReservationControllerService,
+    private reservationManagementControllerService: ReservationManagementControllerService,
+    private router: Router) { }
 
   ngOnInit() {
     this.getBookinglist();
-    this.validateBookingForm = this.formBuilder.group({
-      code: ['']
-    });
   }
 
   getBookinglist() {
@@ -35,8 +34,13 @@ export class BookingManagementComponent implements OnInit {
     );
   }
 
-  onSubmit() {
-    
+  validateBooking(idReservation: number, withDrawalCode: string) {
+    this.reservationManagementControllerService.validateReservationUsingPOST(idReservation, withDrawalCode).subscribe(
+      (resp) => { this.router.navigate(['/bookingmanagement']); },
+      (error) => {this.router.navigate(['/bookingmanagement']); },
+      () => { this.router.navigate(['/bookingmanagement']); }
+    );
+    location.reload();
   }
 
 }
