@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { AddPromotionControllerService } from 'src/app/shared/api/api.';
 import { ReferenceProduct } from 'src/app/shared/models/models';
 import { Subscription } from 'rxjs';
+import { CreatePromotionDTO } from 'src/app/shared/models/createPromotionDTO';
 
 @Component({
   selector: 'app-add-promotion',
@@ -12,10 +14,33 @@ export class AddPromotionComponent implements OnInit {
 
   products: ReferenceProduct [];
   productSubscription: Subscription;
-  constructor(private addPromotionControllerService: AddPromotionControllerService) { }
+  createPromotionForm: FormGroup;
+  // a faire
+  //requestSearchObject: CreatePromotionDTO = new CreatePromotionDTOimpl();
+  
+  constructor(private formBuilder: FormBuilder, private addPromotionControllerService: AddPromotionControllerService) { }
 
   ngOnInit() {
     this.getAllProductList();
+    this.createPromotionForm = this.formBuilder.group({
+      description: [''],
+      discountValue: [''],
+      idCommerce: [''],
+      isCumulative: false,
+      minPurchaseAmountDiscount: [''],
+      minPurchaseAmountPercent: [''],
+      numberOffered: [''],
+      numberPurchase: [''],
+      percentValue: [''],
+      productId: [''],
+      productTakeAwayDuration: [''],
+      promotionDuration: [''],
+      promotionName: [''],
+      quantityInitAvailable: [''],
+      typePromotion: ['']
+
+
+    });
   }
 
   getShopList() {
@@ -34,6 +59,22 @@ export class AddPromotionComponent implements OnInit {
   }
 
   onSubmit() {
+    
+    const description = this.createPromotionForm.get('description').value;
+    const discountValue = this.createPromotionForm.get('discountValue').value;
+    const idCommerce = this.createPromotionForm.get('idCommerce').value;
+    const isCumulative = false;
+    const minPurchaseAmountDiscount = this.createPromotionForm.get('minPurchaseAmountDiscount').value;
+    const minPurchaseAmountPercent = this.createPromotionForm.get('minPurchaseAmountPercent').value;
+    const numberOffered = this.createPromotionForm.get('numberOffered').value;
+    const numberPurchase = this.createPromotionForm.get('numberPurchase').value;
+    const percentValue = this.createPromotionForm.get('percentValue').value;
+    const productId = this.createPromotionForm.get('productId').value;
+    const productTakeAwayDuration = this.createPromotionForm.get('productTakeAwayDuration').value;
+    const promotionDuration = this.createPromotionForm.get('promotionDuration').value;
+    const promotionName = this.createPromotionForm.get('promotionName').value;
+    const quantityInitAvailable = this.createPromotionForm.get('quantityInitAvailable').value;
+    const typePromotion = this.createPromotionForm.get('typePromotion').value;
 
   }
 

@@ -1,41 +1,42 @@
 <div class="jumbotron text-center">
 <h2 class="text-info">Créer votre promotion</h2>
-<form class="justify-content-center px-5" (ngSubmit)="onSubmit()"> <!-- [formGroup]="createPromotionForm" -->
+ <form class="justify-content-center px-5" (ngSubmit)="onSubmit()" > 
+    <!-- [formGroup]="createPromotionForm" -->
     <div class="localisation my-3">
-      <input type="search" formControlName="promotionname" class="form-control mx-auto" placeholder="Nom de la promotion">
+      <input type="createPromotion" formControlName="promotionName" class="form-control mx-auto" placeholder="Nom de la promotion">
     </div>
     <div class="localisation my-3">
-      <input type="search" formControlName="promotiondescription" class="form-control mx-auto" placeholder="Description de la promotion">
+      <input type="createPromotion" formControlName="description" class="form-control mx-auto" placeholder="Description de la promotion">
     </div>
-    <select class="hideLabel form-control mx-auto mt-3" formControlName="shoplist">
+    <select class="hideLabel form-control mx-auto mt-3" formControlName="idCommmerce">
         <option selected style="font-weight: bold">Choisissez un Commerce : </option>
         <option>1</option>
         <option>2</option>
       </select>
-      <select class="hideLabel form-control mx-auto mt-3" formControlName="promotiontype">
+      <select class="hideLabel form-control mx-auto mt-3" formControlName="typePromotion">
           <option selected style="font-weight: bold">Types de promotion disponibles : </option>
           <option>Pourcentage</option>
           <option>Remise</option>
           <option>Pack</option>
         </select>
       <div class="localisation my-3">  
-      <input type="search" formControlName="promotiondescription" class="form-control mx-auto" placeholder="Valeur du pourcentage de remise">
+      <input type="createPromotion" formControlName="minPurchaseAmountDiscount" class="form-control mx-auto" placeholder="Valeur du pourcentage de remise">
     </div>
       <div class="localisation my-3">  
-      <input type="search" formControlName="minimumamounttopurchase" class="form-control mx-auto" placeholder="Montant minimum d'achat">
+      <input type="createPromotion" formControlName="numberPurchase" class="form-control mx-auto" placeholder="Montant minimum d'achat">
     </div>
       <div class="localisation my-3">
-      <input type="search" formControlName="limittimepromotion" class="form-control mx-auto" placeholder="Durée de la promotion (jours)">
+      <input type="createPromotion" formControlName="promotionDuration" class="form-control mx-auto" placeholder="Durée de la promotion (jours)">
     </div>
       <div class="localisation my-3">
-      <input type="search" formControlName="limittimetotakepromotion" class="form-control mx-auto" placeholder="Durée de retrait du produit (heure)">
+      <input type="createPromotion" formControlName="productTakeAwayDuration" class="form-control mx-auto" placeholder="Durée de retrait du produit (heure)">
     </div>
-    <select class="hideLabel form-control mx-auto mt-3" formControlName="referenceproduct">
+    <select class="hideLabel form-control mx-auto mt-3" formControlName="productId">
         <option style="font-weight: bold">Choississez un produit : </option>
-        <option *ngFor="let product of products" > {{product.referenceProduct.name}} - Prix Initial : {{product.initPrice}} € / {{product.referenceProduct.salesUnit.name}}, {{product.description}}</option>
+        <option *ngFor="let product of products" > {{product.referenceProduct.name}} - Prix initial : {{product.initPrice}} € / {{product.referenceProduct.salesUnit.name}}, {{product.description}}</option>
       </select>
       <div class="localisation my-3">
-      <input type="search" formControlName="quantityavailable" class="form-control mx-auto" placeholder="Quantité mise en promotion">
+      <input type="createPromotion" formControlName="quantityInitAvailable" class="form-control mx-auto" placeholder="Quantité mise en promotion">
     </div>
     <button class="btn btn-success btn-lg mb-3" type="submit">
         Créer ma promotion
