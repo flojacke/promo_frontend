@@ -15,17 +15,19 @@
     </thead>
     <tbody>
       <tr *ngFor="let bookedPromo of bookedPromoList">
-        <td>
-          <img class="card-img-top" src="assets/img/products/{{bookedPromo.reservationProduct.promotion.product.image}}">
-          {{bookedPromo.reservationProduct.promotion.product.referenceProduct.name}}</td>
-        <td>{{bookedPromo.reservationProduct.quantityRequested}}</td>
-        <td>{{bookedPromo.dateCreation | date:'dd/MM/yyyy'}}</td>
-        <td>
-          <input type="text" class="form-control" required>
-        </td>
-        <td>
-          <button type="submit" class="btn btn-success text-uppercase">Valider</button>
-        </td>
+        <form class="justify-content-center px-5" [formGroup]="validateBookingForm" (ngSubmit)="onSubmit()">
+          <td>
+            <img src="assets/img/products/{{bookedPromo.reservationProduct.promotion.product.image}}">
+            {{bookedPromo.reservationProduct.promotion.product.referenceProduct.name}}</td>
+          <td>{{bookedPromo.reservationProduct.quantityRequested}}</td>
+          <td>{{bookedPromo.dateCreation | date:'dd/MM/yyyy'}}</td>
+          <td>
+            <input type="text" class="form-control" required>
+          </td>
+          <td>
+            <button type="submit" class="btn btn-success" formControlName="code">Valider</button>
+          </td>
+        </form>
       </tr>
     </tbody>
   </table>
