@@ -7,11 +7,10 @@
       <div class="localisation my-3">
         <input type="createPromotion" formControlName="description" class="form-control mx-auto" placeholder="Description de la promotion">
       </div>
-      <select class="hideLabel form-control mx-auto mt-3" formControlName="idCommerce">
+      <select class="hideLabel form-control mx-auto mt-3"formControlName="idCommerce" >
           <option selected style="font-weight: bold">Choisissez un Commerce : </option>
-          <option>1</option>
-          <option>2</option>
-        </select>
+          <option *ngFor="let shop of shops | keyvalue" [ngValue]="shop" >{{shop.key}}:{{shop.value.name}}</option>
+        </select> 
         <select class="hideLabel form-control mx-auto mt-3" formControlName="typePromotion">
             <option selected style="font-weight: bold">Types de promotion disponibles : </option>
             <option>Pourcentage</option>

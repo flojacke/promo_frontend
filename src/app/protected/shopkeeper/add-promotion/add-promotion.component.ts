@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { AddPromotionControllerService, ConnectionControllerService } from 'src/app/shared/api/api.';
-import { ReferenceProduct, Shop} from 'src/app/shared/models/models';
+import { AddPromotionControllerService, ConnectionControllerService, ClientControllerService } from 'src/app/shared/api/api.';
+import { ReferenceProduct, Shop, Shopkeeper} from 'src/app/shared/models/models';
 import { Subscription } from 'rxjs';
 import { CreatePromotionDTO } from 'src/app/shared/models/createPromotionDTO';
 import { CreatePromotionDTOimpl } from 'src/app/shared/models/CreatePromotionDTOimpl';
@@ -14,17 +14,19 @@ import { CreatePromotionDTOimpl } from 'src/app/shared/models/CreatePromotionDTO
 export class AddPromotionComponent implements OnInit {
 
   products: ReferenceProduct [];
-  shops: Shop [];
+  shops: Array<Shop>;
   productSubscription: Subscription;
   shopShopkeeperListSubscription: Subscription;
   createPromotionForm: FormGroup;
   // a faire
    requestCreatePromotionObject: CreatePromotionDTO = new CreatePromotionDTOimpl();
 
-  constructor(private formBuilder: FormBuilder, private addPromotionControllerService: AddPromotionControllerService, private connectionControllerService: ConnectionControllerService) { }
+  // tslint:disable-next-line:max-line-length
+  constructor(private formBuilder: FormBuilder, private addPromotionControllerService: AddPromotionControllerService, private shopkeeperService: ClientControllerService) { }
 
   ngOnInit() {
     this.getAllProductList();
+    this.getShopList();
     this.createPromotionForm = this.formBuilder.group({
       description: [''],
       discountValue: [''],
@@ -51,13 +53,15 @@ export class AddPromotionComponent implements OnInit {
 
     console.log('getShopList button works');
     // recuperer l'id utilisateur et le + signifie parse du stringtonumber
-    userId = (+(sessionStorage.getItem('userConnecte')));
+    userId = (+(sessionStorage.getItem('userConnected')));
     // recuperer la list des shops problème pour la récuperer
-    //this.shopShopkeeperListSubscription = this.connectionControllerService.connectUsingPOST('root4','root').subscribe(data => {this.shops = data;});
-
+    // tslint:disable-next-line:max-line-length
+    this.shopShopkeeperListSubscription = this.shopkeeperService.getUserByIdUsingGET(userId).subscribe( (data: Shopkeeper) => {this.shops = data.shops; console.log(data.shops); } );
+    console.log(this.shops);
   }
 
   getAllProductList() {
+    // tslint:disable-next-line:max-line-length
     this.productSubscription = this.addPromotionControllerService.referenceProductListUsingGET().subscribe(data => {this.products = data; });
 
   }
@@ -66,7 +70,10 @@ export class AddPromotionComponent implements OnInit {
     console.log('-- Debut test OnSubmit : GetValue --');
     const description = this.createPromotionForm.get('description').value;
     const discountValue = this.createPromotionForm.get('discountValue').value;
-    const idCommerce = this.createPromotionForm.get('idCommerce').value;
+    const commerce = this.createPromotionForm.get('idCommerce').value;
+    console.log(commerce);
+    const idCommerce = commerce.key;
+    console.log(idCommerce);
     const isCumulative = false;
     const minPurchaseAmountDiscount = this.createPromotionForm.get('minPurchaseAmountDiscount').value;
     const minPurchaseAmountPercent = this.createPromotionForm.get('minPurchaseAmountPercent').value;
@@ -77,6 +84,7 @@ export class AddPromotionComponent implements OnInit {
     const productId = product.id;
     console.log(productId);
     this.products.forEach(element => {
+      // tslint:disable-next-line:triple-equals
       if (element.name == this.createPromotionForm.get('productId').value) {
         this.products.push(element);
       }
@@ -104,6 +112,7 @@ export class AddPromotionComponent implements OnInit {
     this.requestCreatePromotionObject.quantityInitAvailable = quantityInitAvailable;
     this.requestCreatePromotionObject.typePromotion = typePromotion;
     console.log('-- Fin test OnSubmit : PostValue --');
+    // tslint:disable-next-line:max-line-length
     this.productSubscription = this.addPromotionControllerService.createUsingPOST(this.requestCreatePromotionObject, (+(sessionStorage.getItem('userConnected')))).subscribe();
 
 

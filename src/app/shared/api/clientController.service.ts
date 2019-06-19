@@ -22,6 +22,7 @@ import { Reservation } from '../models/reservation';
 
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../../../../variables';
 import { Configuration }                                     from '../../../../configuration';
+import { User } from '../models/user';
 
 
 @Injectable()
@@ -89,6 +90,49 @@ export class ClientControllerService {
 
         return this.httpClient.post<Array<Reservation>>(`${this.basePath}/client/bookList/${encodeURIComponent(String(id))}`,
             null,
+            {
+                withCredentials: this.configuration.withCredentials,
+                headers: headers,
+                observe: observe,
+                reportProgress: reportProgress
+            }
+        );
+    }
+
+
+
+
+    /**
+     * getUserById
+     * 
+     * @param userId userId
+     * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+     * @param reportProgress flag to report request and response progress.
+     */
+    public getUserByIdUsingGET(userId: number, observe?: 'body', reportProgress?: boolean): Observable<User>;
+    public getUserByIdUsingGET(userId: number, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<User>>;
+    public getUserByIdUsingGET(userId: number, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<User>>;
+    public getUserByIdUsingGET(userId: number, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+        if (userId === null || userId === undefined) {
+            throw new Error('Required parameter userId was null or undefined when calling getUserByIdUsingGET.');
+        }
+
+        let headers = this.defaultHeaders;
+
+        // to determine the Accept header
+        let httpHeaderAccepts: string[] = [
+            '*/*'
+        ];
+        let httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+        if (httpHeaderAcceptSelected != undefined) {
+            headers = headers.set("Accept", httpHeaderAcceptSelected);
+        }
+
+        // to determine the Content-Type header
+        let consumes: string[] = [
+        ];
+
+        return this.httpClient.get<User>(`${this.basePath}/client/${encodeURIComponent(String(userId))}`,
             {
                 withCredentials: this.configuration.withCredentials,
                 headers: headers,
