@@ -1,45 +1,58 @@
 <div class="jumbotron text-center">
-<h2 class="text-info">Créer votre promotion</h2>
- <form class="justify-content-center px-5" (ngSubmit)="onSubmit()" > 
-    <!-- [formGroup]="createPromotionForm" -->
-    <div class="localisation my-3">
-      <input type="createPromotion" formControlName="promotionName" class="form-control mx-auto" placeholder="Nom de la promotion">
-    </div>
-    <div class="localisation my-3">
-      <input type="createPromotion" formControlName="description" class="form-control mx-auto" placeholder="Description de la promotion">
-    </div>
-    <select class="hideLabel form-control mx-auto mt-3" formControlName="idCommmerce">
-        <option selected style="font-weight: bold">Choisissez un Commerce : </option>
-        <option>1</option>
-        <option>2</option>
-      </select>
-      <select class="hideLabel form-control mx-auto mt-3" formControlName="typePromotion">
-          <option selected style="font-weight: bold">Types de promotion disponibles : </option>
-          <option>Pourcentage</option>
-          <option>Remise</option>
-          <option>Pack</option>
+  <h2 class="text-info">Créer votre promotion</h2>
+   <form class="justify-content-center px-5"  [formGroup]="createPromotionForm" (ngSubmit)="onSubmit()" > 
+      <div class="localisation my-3">
+        <input type="createPromotion" formControlName="promotionName" class="form-control mx-auto" placeholder="Nom de la promotion">
+      </div>
+      <div class="localisation my-3">
+        <input type="createPromotion" formControlName="description" class="form-control mx-auto" placeholder="Description de la promotion">
+      </div>
+      <select class="hideLabel form-control mx-auto mt-3" formControlName="idCommerce">
+          <option selected style="font-weight: bold">Choisissez un Commerce : </option>
+          <option>1</option>
+          <option>2</option>
         </select>
+        <select class="hideLabel form-control mx-auto mt-3" formControlName="typePromotion">
+            <option selected style="font-weight: bold">Types de promotion disponibles : </option>
+            <option>Pourcentage</option>
+            <option>Remise</option>
+            <option>Pack</option>
+          </select>
+        <div class="localisation my-3">  
+        <input type="createPromotion" formControlName="percentValue" class="form-control mx-auto" placeholder="Valeur du pourcentage de la remise">
+      </div>
+        <div class="localisation my-3">  
+        <input type="createPromotion" formControlName="minPurchaseAmountPercent" class="form-control mx-auto" placeholder="Montant minimum d'achat">
+      </div>
       <div class="localisation my-3">  
-      <input type="createPromotion" formControlName="minPurchaseAmountDiscount" class="form-control mx-auto" placeholder="Valeur du pourcentage de remise">
+      <input type="createPromotion" formControlName="discountValue" class="form-control mx-auto" placeholder="Valeur en euros de la remise">
     </div>
       <div class="localisation my-3">  
-      <input type="createPromotion" formControlName="numberPurchase" class="form-control mx-auto" placeholder="Montant minimum d'achat">
+      <input type="createPromotion" formControlName="minPurchaseAmountDiscount" class="form-control mx-auto" placeholder="Montant minimum d'achat">
     </div>
-      <div class="localisation my-3">
-      <input type="createPromotion" formControlName="promotionDuration" class="form-control mx-auto" placeholder="Durée de la promotion (jours)">
-    </div>
-      <div class="localisation my-3">
-      <input type="createPromotion" formControlName="productTakeAwayDuration" class="form-control mx-auto" placeholder="Durée de retrait du produit (heure)">
-    </div>
-    <select class="hideLabel form-control mx-auto mt-3" formControlName="productId">
-        <option style="font-weight: bold">Choississez un produit : </option>
-        <option *ngFor="let product of products" > {{product.referenceProduct.name}} - Prix initial : {{product.initPrice}} € / {{product.referenceProduct.salesUnit.name}}, {{product.description}}</option>
-      </select>
-      <div class="localisation my-3">
-      <input type="createPromotion" formControlName="quantityInitAvailable" class="form-control mx-auto" placeholder="Quantité mise en promotion">
-    </div>
-    <button class="btn btn-success btn-lg mb-3" type="submit">
-        Créer ma promotion
-    </button>
-  </form>
-</div>
+    <div class="localisation my-3">  
+    <input type="createPromotion" formControlName="numberOffered" class="form-control mx-auto" placeholder="Nombres de produit offert">
+  </div>
+    <div class="localisation my-3">  
+    <input type="createPromotion" formControlName="numberPurchase" class="form-control mx-auto" placeholder="Montant minimum d'achat">
+  </div>
+        <div class="localisation my-3">
+        <input type="createPromotion" formControlName="promotionDuration" class="form-control mx-auto" placeholder="Durée de la promotion (jours)">
+      </div>
+        <div class="localisation my-3">
+        <input type="createPromotion" formControlName="productTakeAwayDuration" class="form-control mx-auto" placeholder="Durée de retrait du produit (heure)">
+      </div>
+      <select class="hideLabel form-control mx-auto mt-3" formControlName="productId">
+          <option selected style="font-weight: bold">Choississez un produit : </option>
+          <!-- <option *ngFor="let product of products" > {{product.referenceProduct.id}}</option> -->
+          <option *ngFor="let product of products" [ngValue]="product" > {{product.referenceProduct.name}} Prix initial : {{product.initPrice}} € / {{product.referenceProduct.salesUnit.name}}, {{product.description}}</option>
+          <!-- -  {{product.referenceProduct.name}} Prix initial : {{product.initPrice}} € / {{product.referenceProduct.salesUnit.name}}, {{product.description}} -->
+        </select>
+        <div class="localisation my-3">
+        <input type="createPromotion" formControlName="quantityInitAvailable" class="form-control mx-auto" placeholder="Quantité mise en promotion">
+      </div>
+      <button class="btn btn-success btn-lg mb-3" type="submit">
+          Créer ma promotion
+      </button>
+    </form>
+  </div>

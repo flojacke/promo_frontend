@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { AddPromotionControllerService } from 'src/app/shared/api/api.';
-import { ReferenceProduct } from 'src/app/shared/models/models';
+import { AddPromotionControllerService, ConnectionControllerService } from 'src/app/shared/api/api.';
+import { ReferenceProduct, Shop} from 'src/app/shared/models/models';
 import { Subscription } from 'rxjs';
 import { CreatePromotionDTO } from 'src/app/shared/models/createPromotionDTO';
+import { CreatePromotionDTOimpl } from 'src/app/shared/models/CreatePromotionDTOimpl';
 
 @Component({
   selector: 'app-add-promotion',
@@ -13,12 +14,14 @@ import { CreatePromotionDTO } from 'src/app/shared/models/createPromotionDTO';
 export class AddPromotionComponent implements OnInit {
 
   products: ReferenceProduct [];
+  shops: Shop [];
   productSubscription: Subscription;
+  shopShopkeeperListSubscription: Subscription;
   createPromotionForm: FormGroup;
   // a faire
-  //requestSearchObject: CreatePromotionDTO = new CreatePromotionDTOimpl();
-  
-  constructor(private formBuilder: FormBuilder, private addPromotionControllerService: AddPromotionControllerService) { }
+   requestCreatePromotionObject: CreatePromotionDTO = new CreatePromotionDTOimpl();
+
+  constructor(private formBuilder: FormBuilder, private addPromotionControllerService: AddPromotionControllerService, private connectionControllerService: ConnectionControllerService) { }
 
   ngOnInit() {
     this.getAllProductList();
@@ -50,6 +53,7 @@ export class AddPromotionComponent implements OnInit {
     // recuperer l'id utilisateur et le + signifie parse du stringtonumber
     userId = (+(sessionStorage.getItem('userConnecte')));
     // recuperer la list des shops problème pour la récuperer
+    //this.shopShopkeeperListSubscription = this.connectionControllerService.connectUsingPOST('root4','root').subscribe(data => {this.shops = data;});
 
   }
 
@@ -59,7 +63,7 @@ export class AddPromotionComponent implements OnInit {
   }
 
   onSubmit() {
-    
+    console.log('-- Debut test OnSubmit : GetValue --');
     const description = this.createPromotionForm.get('description').value;
     const discountValue = this.createPromotionForm.get('discountValue').value;
     const idCommerce = this.createPromotionForm.get('idCommerce').value;
@@ -69,12 +73,43 @@ export class AddPromotionComponent implements OnInit {
     const numberOffered = this.createPromotionForm.get('numberOffered').value;
     const numberPurchase = this.createPromotionForm.get('numberPurchase').value;
     const percentValue = this.createPromotionForm.get('percentValue').value;
-    const productId = this.createPromotionForm.get('productId').value;
+    const product = this.createPromotionForm.get('productId').value;
+    const productId = product.id;
+    console.log(productId);
+    this.products.forEach(element => {
+      if (element.name == this.createPromotionForm.get('productId').value) {
+        this.products.push(element);
+      }
+    });
     const productTakeAwayDuration = this.createPromotionForm.get('productTakeAwayDuration').value;
     const promotionDuration = this.createPromotionForm.get('promotionDuration').value;
     const promotionName = this.createPromotionForm.get('promotionName').value;
     const quantityInitAvailable = this.createPromotionForm.get('quantityInitAvailable').value;
     const typePromotion = this.createPromotionForm.get('typePromotion').value;
+    console.log('-- Fin test OnSubmit : GetValue --');
+    console.log('-- Debut test OnSubmit : PostValue --');
+    this.requestCreatePromotionObject.description = description;
+    this.requestCreatePromotionObject.discountValue = discountValue;
+    this.requestCreatePromotionObject.idCommerce = idCommerce;
+    this.requestCreatePromotionObject.isCumulative = isCumulative;
+    this.requestCreatePromotionObject.minPurchaseAmountDiscount = minPurchaseAmountDiscount;
+    this.requestCreatePromotionObject.minPurchaseAmountPercent = minPurchaseAmountPercent;
+    this.requestCreatePromotionObject.numberOffered = numberOffered;
+    this.requestCreatePromotionObject.numberPurchase = numberPurchase;
+    this.requestCreatePromotionObject.percentValue = percentValue;
+    this.requestCreatePromotionObject.productId = productId;
+    this.requestCreatePromotionObject.productTakeAwayDuration = productTakeAwayDuration;
+    this.requestCreatePromotionObject.promotionDuration = promotionDuration;
+    this.requestCreatePromotionObject.promotionName = promotionName;
+    this.requestCreatePromotionObject.quantityInitAvailable = quantityInitAvailable;
+    this.requestCreatePromotionObject.typePromotion = typePromotion;
+    console.log('-- Fin test OnSubmit : PostValue --');
+    this.productSubscription = this.addPromotionControllerService.createUsingPOST(this.requestCreatePromotionObject, (+(sessionStorage.getItem('userConnected')))).subscribe();
+
+
+    this.products = [];
+
+// addPromotionControllerService
 
   }
 
